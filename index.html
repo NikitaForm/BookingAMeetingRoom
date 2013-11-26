@@ -10,21 +10,63 @@
 </head>
 <body>
 
-    <button onclick="calendar.setValue(new Date())">Сегодня</button>
-    <button onclick="calendar.setValue({value: {year: 2013, month: 1}})">Вперёд</button>
+    <button onclick="calendar.monthBack()">Назад</button>
+    <button onclick="calendar.setValue(new Date(),1)">Сегодня</button>
+    <button onclick="calendar.monthForward()">Вперёд</button>
 
     <div id="calendar-holder"></div>
     <div id="value">here will be selected value</div>
 
+
+    <ul id="schedule">
+        <li>8:00</li>
+        <li>9:00</li>
+        <li>10:00</li>
+        <li>11:00</li>
+        <li>12:00</li>
+        <li>13:00</li>
+        <li>14:00</li>
+        <li>15:00</li>
+        <li>16:00</li>
+        <li>17:00</li>
+        <li>18:00</li>
+        <li>19:00</li>
+    </ul>
+
+    <button onclick="bookMeetingRoom()">Зарезервировать</button>
+
     <script>
-        var calendar = new Calendar({
-            value: {year: 2013, month: 6}
-        });
+        var calendar = new Calendar(new Date(2013,7,7));
         $('#calendar-holder').append(calendar.getElement());
 
         $(calendar).on("select", function(e) {
             $('#value').html(e.value + '');
         });
+
+        $('#schedule').on('click', 'li', onClick);
+        function onClick(e) {
+            //alert($(e.target).html());
+            $(e.target).toggleClass("selected");
+        }
+        function bookMeetingRoom() {
+            var value = $('#value').html();
+            var times = [];
+            $('li').each(function(index, elem) {
+                        if($(elem).hasClass('selected')) {
+                            times.push($(elem).html());
+                        }
+                    });
+            storage[value.toString()] = times;
+            alert(value);
+            alert(times.join());
+            var str = 1;
+            for(key in storage) {
+
+                str+=key + ' ' + storage[key] + ';||' ;
+            }
+            alert(str);
+        }
+        var storage = {};
 
     </script>
 
