@@ -70,7 +70,7 @@
                 storage[value.toString()] = times;
 
                 var str = '';
-                for(key in storage) {
+                for( var key in storage) {
 
                     str+=key + ' ' + storage[key] + ';||' ;
                 }
@@ -90,7 +90,9 @@
                 }
             }
             function highlightDays(month) {
-
+                for(var key in storage){
+                    
+                }
             }
             var storage = {};
 
