@@ -3,13 +3,17 @@
 }
 .calendar-table td, .calendar-table th {
     border: 1px solid black;
-    padding: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
     text-align: center;
 }
 
 .calendar-table th {
     font-weight: bold;
-    background-color: #e6e6e6;
+    color: whitesmoke;
+    background-color: #9F2D37;
 }
 
 .date-cell:hover {
@@ -23,4 +27,51 @@
 
 .calendar-table caption {
     text-align: center;
+}
+
+li {
+    list-style: none;
+
+    float: left;
+    padding: 6px;
+
+
+    border: 1px solid gray;
+    border-collapse: collapse;
+
+    cursor: pointer;
+    font-size: 90%;
+    background: #caeff5;
+
+}
+
+.selected {
+    background: #0ff;
+}
+
+body {
+    background: #e6ffff;
+
+}
+
+#main {
+    width: 760px;
+    height: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    background-color: #ffffe6;
+}
+
+#calendar-holder {
+    padding-bottom: 30px;
+}
+
+ul {
+    margin-left: 5px;
+}
+#header {
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }

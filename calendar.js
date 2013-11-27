@@ -8,7 +8,7 @@ function Calendar(date) {
     var elem, year, month, day;
     var showYear, showMonth;
 
-    parseValue (date.value);
+    parseValue (date);
 
     this.getElement = function() {
         if (!elem) {
@@ -20,21 +20,27 @@ function Calendar(date) {
     this.getValue = function() {
         return new Date(year, month);
     };
-    function parseValue (value) {
+    function parseValue (value, isDayDefined) {
         if (value instanceof Date) {
             year = value.getFullYear();
             month = value.getMonth();
-            day = value.getDate();
+            if(isDayDefined) {
+                day = value.getDate();
+            }
+
+        }
+   /*         day = value.getDate();
         } else {
             year = value.year;
             month = value.month;
             day = value.day;
         }
-        alert(value.year);
+        alert(month);
+    */
     }
 
-    this.setValue = function(newValue, quiet) {
-        parseValue(newValue);
+    this.setValue = function(newValue, isDayDefined, quiet) {
+        parseValue(newValue, isDayDefined);
 
         if(elem) {
             clearSelected();
@@ -44,7 +50,8 @@ function Calendar(date) {
         if(!quiet) {
             $(self).triggerHandler({
                 type: "select",
-                value: new Date(year, month, day)
+         //       value: (new Date(year, month, day))
+                value: '' + ((day < 10) ? '0' + day : day) + '.' + ((month < 10) ? '0' + month : month) + '.' + year
             });
         }
     };
@@ -116,7 +123,12 @@ function Calendar(date) {
 
     }
 
+    this.monthForward = function() {
+        this.setValue(new Date(year, month + 1), 0, 1);
+    };
 
-
+    this.monthBack = function() {
+        this.setValue(new Date(year, month - 1), 0, 1);
+    }
 
 }

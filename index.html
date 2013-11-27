@@ -4,71 +4,98 @@
     <meta charset="utf-8">
     <link type="text/css" rel="stylesheet" href="calendar.css">
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-
+    <link rel="SHORTCUT ICON" href="i1.ico">
     <script src="calendar.js"></script>
-    <title></title>
+    <title>Бронирование конференц зала</title>
 </head>
 <body>
+    <div id="header">
+        <img src="head.jpg">
+    </div>
+    <div id="main">
 
-    <button onclick="calendar.monthBack()">Назад</button>
-    <button onclick="calendar.setValue(new Date(),1)">Сегодня</button>
-    <button onclick="calendar.monthForward()">Вперёд</button>
+        <button onclick="calendar.monthBack()">Назад</button>
+        <button onclick="calendar.setValue(new Date(),1)">Сегодня</button>
+        <button onclick="calendar.monthForward()">Вперёд</button>
 
-    <div id="calendar-holder"></div>
-    <div id="value">here will be selected value</div>
+        <div id="calendar-holder"></div>
 
+        <div id="form" style="display: none">
+            <div id="value">here will be selected value</div>
 
-    <ul id="schedule">
-        <li>8:00</li>
-        <li>9:00</li>
-        <li>10:00</li>
-        <li>11:00</li>
-        <li>12:00</li>
-        <li>13:00</li>
-        <li>14:00</li>
-        <li>15:00</li>
-        <li>16:00</li>
-        <li>17:00</li>
-        <li>18:00</li>
-        <li>19:00</li>
-    </ul>
+            <ul id="schedule">
+                <li> 8:00</li>
+                <li> 9:00</li>
+                <li>10:00</li>
+                <li>11:00</li>
+                <li>12:00</li>
+                <li>13:00</li>
+                <li>14:00</li>
+                <li>15:00</li>
+                <li>16:00</li>
+                <li>17:00</li>
+                <li>18:00</li>
+                <li>19:00</li>
+            </ul>
 
-    <button onclick="bookMeetingRoom()">Зарезервировать</button>
+            <div>
+                <button onclick="bookMeetingRoom()">Зарезервировать</button>
+            </div>
 
-    <script>
-        var calendar = new Calendar(new Date(2013,7,7));
-        $('#calendar-holder').append(calendar.getElement());
+        </div>
 
-        $(calendar).on("select", function(e) {
-            $('#value').html(e.value + '');
-        });
+        <script>
+            var calendar = new Calendar(new Date(2013,7,7));
+            $('#calendar-holder').append(calendar.getElement());
 
-        $('#schedule').on('click', 'li', onClick);
-        function onClick(e) {
-            //alert($(e.target).html());
-            $(e.target).toggleClass("selected");
-        }
-        function bookMeetingRoom() {
-            var value = $('#value').html();
-            var times = [];
-            $('li').each(function(index, elem) {
-                        if($(elem).hasClass('selected')) {
-                            times.push($(elem).html());
-                        }
-                    });
-            storage[value.toString()] = times;
-            alert(value);
-            alert(times.join());
-            var str = 1;
-            for(key in storage) {
+            $(calendar).on("select", function(e) {
+                $('#value').html(e.value);
+                $('#form').toggle(true);
+                highlightHours();
+            });
 
-                str+=key + ' ' + storage[key] + ';||' ;
+            $('#schedule').on('click', 'li', onClick);
+            function onClick(e) {
+                //alert($(e.target).html());
+                $(e.target).toggleClass("selected");
             }
-            alert(str);
-        }
-        var storage = {};
+            function bookMeetingRoom() {
+                var value = $('#value').html();
+                var times = [];
+                $('li').each(function(index, elem) {
+                            if($(elem).hasClass('selected')) {
+                                times.push($(elem).html());
+                            }
+                        });
+                storage[value.toString()] = times;
 
-    </script>
+                var str = '';
+                for(key in storage) {
+
+                    str+=key + ' ' + storage[key] + ';||' ;
+                }
+                //alert(str);
+            }
+            function highlightHours() {
+                var hourValues = storage[$('#value').html()];
+                //alert('hourValues ' + hourValues);
+                //alert($('#value').html());
+                var lis = $('li').toggleClass('selected', false);
+                if(hourValues){
+                    lis.each(function(index, elem) {
+                                if(hourValues.indexOf($(elem).html()) != -1) {
+                                    $(elem).addClass('selected');
+                                }
+                            });
+                }
+            }
+            function highlightDays(month) {
+
+            }
+            var storage = {};
+
+        </script>
+    </div>
 
 </body>
 </html>
