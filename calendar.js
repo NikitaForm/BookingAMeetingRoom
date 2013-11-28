@@ -47,13 +47,11 @@ function Calendar(date) {
             render();
         }
 
-        if(!quiet) {
-            $(self).triggerHandler({
-                type: "select",
-         //       value: (new Date(year, month, day))
-                value: '' + ((day < 10) ? '0' + day : day) + '.' + ((month < 10) ? '0' + month : month) + '.' + year
-            });
-        }
+        if (!quiet) $(self).triggerHandler({
+            type: "select",
+            //       value: (new Date(year, month, day))
+            value: '' + ((day < 10) ? '0' + day : day) + '.' + ((month < 9) ? '0' + (month + 1) : (month + 1)) + '.' + year
+        });
     };
 
     function render() {
@@ -113,7 +111,7 @@ function Calendar(date) {
         }
 
         if(getDay(d) != 0) {
-            for (var i = getDay(d); i < 7; i++) {
+            for (i = getDay(d); i < 7; i++) {
                 table.push('<td></td>');
             }
         }
@@ -124,11 +122,11 @@ function Calendar(date) {
     }
 
     this.monthForward = function() {
-        this.setValue(new Date(year, month + 1), 0, 1);
+        this.setValue(new Date(year, month + 1), 0, 0);
     };
 
     this.monthBack = function() {
-        this.setValue(new Date(year, month - 1), 0, 1);
+        this.setValue(new Date(year, month - 1), 0, 0);
     }
 
 }
