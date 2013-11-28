@@ -5,6 +5,7 @@
     <link type="text/css" rel="stylesheet" href="calendar.css">
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <link rel="SHORTCUT ICON" href="i1.ico">
+    <script src="weekHours.js"></script>
     <script src="calendar.js"></script>
     <title>Бронирование конференц зала</title>
 </head>
@@ -40,61 +41,112 @@
 
             <div>
                 <button onclick="bookMeetingRoom()">Зарезервировать</button>
+
+                <button onclick="toggleWeekHoursDiv()">Установить правило</button>
             </div>
+
+            <div id="weekhours-holder">
+                <div>
+                    <button onclick="toggleWeekHoursDiv()">Применить</button>
+                </div>
+            </div>
+
+
 
         </div>
 
         <script>
+            var storage = {};
             var calendar = new Calendar(new Date(2013,7,7));
+            var weekHours = new WeekHours();
             $('#calendar-holder').append(calendar.getElement());
+
 
             $(calendar).on("select", function(e) {
                 $('#value').html(e.value);
                 $('#form').toggle(true);
+                highlightDays(calendar.getValue().getMonth() + 1);
                 highlightHours();
             });
 
+            $('#weekhours-holder').prepend(weekHours.getElement())
+                    .on('click', 'td', onClick);
+
+            $('tr').filter(':odd').css('background-color', '#d3d3d3').end()
+                    .filter(':even').css('background-color', '#e1e0e0');
+
             $('#schedule').on('click', 'li', onClick);
+
             function onClick(e) {
                 //alert($(e.target).html());
-                $(e.target).toggleClass("selected");
+                $(e.target).toggleClass("selected2");
             }
             function bookMeetingRoom() {
                 var value = $('#value').html();
                 var times = [];
                 $('li').each(function(index, elem) {
-                            if($(elem).hasClass('selected')) {
+                            if($(elem).hasClass('selected2')) {
                                 times.push($(elem).html());
                             }
                         });
-                storage[value.toString()] = times;
+               // if(value in storage)&&
+                if(times.length == 0) {
+                    delete storage[value];
+                } else {
+                    storage[value] = times;
+                }
 
-                var str = '';
+
+            /*    var str = '';
                 for( var key in storage) {
 
                     str+=key + ' ' + storage[key] + ';||' ;
-                }
+                }*/
                 //alert(str);
             }
             function highlightHours() {
                 var hourValues = storage[$('#value').html()];
                 //alert('hourValues ' + hourValues);
                 //alert($('#value').html());
-                var lis = $('li').toggleClass('selected', false);
+                var lis = $('li').toggleClass('selected2', false);
                 if(hourValues){
                     lis.each(function(index, elem) {
                                 if(hourValues.indexOf($(elem).html()) != -1) {
-                                    $(elem).addClass('selected');
+                                    $(elem).addClass('selected2');
                                 }
                             });
                 }
             }
             function highlightDays(month) {
+                var dayValues = [];
+                var  dateFromStorage;
                 for(var key in storage){
-                    
+                    dateFromStorage = key.split('.');
+                    if(dateFromStorage[1] == month) {
+                        dayValues.push(parseInt(dateFromStorage[0]).toString());
+                    }
                 }
+                //alert('1:' + dayValues.join());
+                var tds = $('td').toggleClass('selected2', false);
+                if(dayValues){
+                    tds.each(function(index, elem) {
+                        if(dayValues.indexOf($(elem).html()) != -1) {
+                            $(elem).addClass('selected2');
+                        }
+                    });
+                }
+
+
             }
-            var storage = {};
+            function toggleWeekHoursDiv() {
+                $('#weekhours-holder').toggle();
+
+            }
+
+            function createRule() {
+                $('#weekdays').filter(':checked')
+            }
+
 
         </script>
     </div>
