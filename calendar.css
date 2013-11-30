@@ -1,18 +1,30 @@
-.calendar-table {
+.calendar-table, .weekhours-table {
     border-collapse: collapse;
 }
-.calendar-table td, .calendar-table th {
-    border: 1px solid black;
+.calendar-table td, .weekhours-table td  {
+    border-left: 1px solid;
+    border-right: 1px solid;
+    border-color: #ababab;
     padding-top: 3px;
     padding-bottom: 3px;
     padding-left: 5px;
     padding-right: 5px;
     text-align: center;
 }
+.calendar-table:nth-child(2), .weekhours-table:nth-child(2) {
+    background: #e1e0e0;
+}
+.calendar-table tr, .weekhours-table tr  {
+    background: #d3d3d3;
+}
 
-.calendar-table th {
+.calendar-table th, .weekhours-table th, .day-names {
     font-weight: bold;
     color: whitesmoke;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
     background-color: #9F2D37;
 }
 
@@ -22,7 +34,13 @@
 }
 
 .date-cell.selected {
-    background: #0ff;
+
+    font-weight: bold;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
+    border: 1px dashed;
 }
 
 .calendar-table caption {
@@ -45,9 +63,15 @@ li {
 
 }
 
-.selected {
-    background: #0ff;
-}
+.selected2 {
+     font-weight: bold;
+     text-decoration: underline;
+     padding-top: 5px;
+     padding-left: 5px;
+     padding-right: 5px;
+     background: #f98690;
+ }
+
 
 body {
     background: #e6ffff;
@@ -60,6 +84,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     padding: 20px;
+    padding-top: 0;
     background-color: #ffffe6;
 }
 
@@ -68,10 +93,16 @@ body {
 }
 
 ul {
-    margin-left: 5px;
+    list-style: none;
+    float: left;
+    width: 100%;
 }
 #header {
     width: 800px;
     margin-left: auto;
     margin-right: auto;
+}
+button {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

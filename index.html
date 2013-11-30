@@ -5,6 +5,7 @@
     <link type="text/css" rel="stylesheet" href="calendar.css">
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <link rel="SHORTCUT ICON" href="i1.ico">
+    <script src="weekHours.js"></script>
     <script src="calendar.js"></script>
     <title>Бронирование конференц зала</title>
 </head>
@@ -39,62 +40,192 @@
             </ul>
 
             <div>
-                <button onclick="bookMeetingRoom()">Зарезервировать</button>
+                <button onclick="bookMeetingRoom()">Подтвердить</button>
+
+                <button onclick="toggleWeekHoursDiv()">Установить правило</button>
             </div>
+
+            <div id="weekhours-holder">
+                <div>
+                    <button onclick="createRule(); toggleWeekHoursDiv()">Применить</button>
+                </div>
+            </div>
+
+
 
         </div>
 
         <script>
+            var storage = {};
             var calendar = new Calendar(new Date(2013,7,7));
+            var weekHours = new WeekHours();
             $('#calendar-holder').append(calendar.getElement());
+
 
             $(calendar).on("select", function(e) {
                 $('#value').html(e.value);
                 $('#form').toggle(true);
-                highlightHours();
+                highlightDays(calendar.getValue());
+                highlightHours(calendar.getValue());
             });
 
+            $('#weekhours-holder').prepend(weekHours.getElement())
+                    .on('click', 'td:not(.day-names)', onClick);
+
+            $('tr').filter(':odd').css('background-color', '#d3d3d3').end()
+                    .filter(':even').css('background-color', '#e1e0e0');
+
             $('#schedule').on('click', 'li', onClick);
+
             function onClick(e) {
                 //alert($(e.target).html());
-                $(e.target).toggleClass("selected");
+                $(e.target).toggleClass("selected2");
             }
             function bookMeetingRoom() {
                 var value = $('#value').html();
                 var times = [];
                 $('li').each(function(index, elem) {
-                            if($(elem).hasClass('selected')) {
+                            if($(elem).hasClass('selected2')) {
                                 times.push($(elem).html());
                             }
                         });
-                storage[value.toString()] = times;
+               // if(value in storage)&&
+                if(times.length == 0) {
+                    delete storage[value];
+                } else {
+                    storage[value] = times;
+                }
 
-                var str = '';
+
+               /* var str = '';
                 for( var key in storage) {
 
                     str+=key + ' ' + storage[key] + ';||' ;
                 }
-                //alert(str);
+                alert(str);*/
             }
-            function highlightHours() {
-                var hourValues = storage[$('#value').html()];
-                //alert('hourValues ' + hourValues);
-                //alert($('#value').html());
-                var lis = $('li').toggleClass('selected', false);
+            function highlightHours(currentDate) {
+                var hourValuesStor = storage[$('#value').html()];
+                var rule = storage.rule;
+                var hourValuesRule;
+                if (rule){
+                    hourValuesRule = storage.rule[currentDate.getDay()%7];
+                }
+
+                var hourValues = [];
+                if (hourValuesStor) {
+                    hourValues = hourValues.concat(hourValuesStor);
+                }
+                if (hourValuesRule) {
+                    hourValues = hourValues.concat(hourValuesRule);
+                }
+
+                var lis = $('li').toggleClass('selected2', false);
                 if(hourValues){
                     lis.each(function(index, elem) {
                                 if(hourValues.indexOf($(elem).html()) != -1) {
-                                    $(elem).addClass('selected');
+                                    $(elem).addClass('selected2');
                                 }
+
                             });
                 }
             }
-            function highlightDays(month) {
-                for(var key in storage){
-                    
+            function highlightDays(currentDate) {
+                var dayValues = [];
+                var  dateFromStorage;
+                var month = currentDate.getMonth();
+                for(var key in storage) {
+
+                    if(key != 'rule') {
+
+                        dateFromStorage = key.split('.');
+
+                        if(dateFromStorage[1] == month + 1) {
+                            dayValues.push(parseInt(dateFromStorage[0]).toString());
+                        }
+                    }else {
+                        currentDate.setDate(1);
+
+
+                        while (currentDate.getMonth() == month) {
+
+                            if (currentDate.getDay()%7 in storage.rule) {
+
+                                dayValues.push(currentDate.getDate() + '');
+                            }
+                            currentDate.setDate(currentDate.getDate() + 1);
+                        }
+
+                    }
                 }
+
+                var tds = $('.date-cell').toggleClass('selected2', false);
+                if(dayValues){
+                    tds.each(function(index, elem) {
+                        if(dayValues.indexOf($(elem).html()) != -1) {
+                            $(elem).addClass('selected2');
+                        }
+                    });
+                }
+
+
             }
-            var storage = {};
+            function highlightRule() {
+
+            }
+            function toggleWeekHoursDiv() {
+                $('#weekhours-holder').toggle();
+
+            }
+
+            function createRule() {
+                var dayNum;
+                var weekTable = $('#weekhours-holder');
+                var rule = {};
+                weekTable.find('.selected2')
+                        .each(function(index, elem) {
+
+                            var row = $(elem).parent();
+
+                            var dayName = row.find('.day-names').html();
+
+                            switch (dayName) {
+                                case 'Пн':
+                                    dayNum = 1;
+                                    break;
+                                case 'Вт':
+                                    dayNum = 2;
+                                    break;
+                                case 'Ср':
+                                    dayNum = 3;
+                                    break;
+                                case 'Чт':
+                                    dayNum = 4;
+                                    break;
+                                case 'Пт':
+                                    dayNum = 5;
+                                    break;
+                                case 'Сб':
+                                    dayNum = 6;
+                                    break;
+                                case 'Вс':
+                                    dayNum = 0;
+                                    break;
+
+                            }
+                            var hour = weekTable.find('th').eq(row.find('td').index($(elem))).html();
+
+                            if ( dayNum in rule ) {
+                                rule[dayNum].push(hour);
+                            } else {
+                                rule[dayNum] = [];
+                                rule[dayNum].push(hour);
+                            }
+
+                        });
+                storage.rule = rule;
+            }
+
 
         </script>
     </div>

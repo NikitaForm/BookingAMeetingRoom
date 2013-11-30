@@ -18,7 +18,7 @@ function Calendar(date) {
     };
 
     this.getValue = function() {
-        return new Date(year, month);
+        return new Date(year, month, day);
     };
     function parseValue (value, isDayDefined) {
         if (value instanceof Date) {
