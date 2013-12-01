@@ -2,27 +2,29 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link type="text/css" rel="stylesheet" href="calendar.css">
+    <link type="text/css" rel="stylesheet" href="styles/calendar.css">
+    <link type="text/css" rel="stylesheet" href="styles/main.css">
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <link rel="SHORTCUT ICON" href="i1.ico">
-    <script src="weekHours.js"></script>
-    <script src="calendar.js"></script>
+    <link rel="SHORTCUT ICON" href="images/i1.ico">
+    <script src="scripts/weekHours.js"></script>
+    <script src="scripts/calendar.js"></script>
     <title>Бронирование конференц зала</title>
 </head>
 <body>
     <div id="header">
-        <img src="head.jpg">
+        <img src="images/head.jpg">
     </div>
     <div id="main">
-
-        <button onclick="calendar.monthBack()">Назад</button>
-        <button onclick="calendar.setValue(new Date(),1)">Сегодня</button>
-        <button onclick="calendar.monthForward()">Вперёд</button>
+        <div id="navigator">
+            <button id="left" onclick="calendar.previousMonth()"></button>
+            <button onclick="calendar.setValue(new Date())">Сегодня</button>
+            <button id="right" onclick="calendar.nextMonth()"></button>
+        </div>
 
         <div id="calendar-holder"></div>
 
         <div id="form" style="display: none">
-            <div id="value">here will be selected value</div>
+            <div id="value"></div>
 
             <ul id="schedule">
                 <li> 8:00</li>
@@ -39,28 +41,24 @@
                 <li>19:00</li>
             </ul>
 
-            <div>
-                <button onclick="bookMeetingRoom()">Подтвердить</button>
-
-                <button onclick="toggleWeekHoursDiv()">Установить правило</button>
+            <div class="buttons">
+                <button onclick="bookMeetingRoom(); highlightDays(calendar.getValue());">Подтвердить</button>
+                <button onclick="toggleWeekHoursDiv()">Редактор правил</button>
             </div>
 
             <div id="weekhours-holder">
-                <div>
-                    <button onclick="createRule(); toggleWeekHoursDiv()">Применить</button>
+                <div class="buttons">
+                    <button onclick="createRule(); toggleWeekHoursDiv(); highlightDays(calendar.getValue());">Применить</button>
                 </div>
             </div>
-
-
 
         </div>
 
         <script>
             var storage = {};
-            var calendar = new Calendar(new Date(2013,7,7));
+            var calendar = new Calendar(new Date());
             var weekHours = new WeekHours();
             $('#calendar-holder').append(calendar.getElement());
-
 
             $(calendar).on("select", function(e) {
                 $('#value').html(e.value);
@@ -72,123 +70,103 @@
             $('#weekhours-holder').prepend(weekHours.getElement())
                     .on('click', 'td:not(.day-names)', onClick);
 
-            $('tr').filter(':odd').css('background-color', '#d3d3d3').end()
-                    .filter(':even').css('background-color', '#e1e0e0');
-
             $('#schedule').on('click', 'li', onClick);
 
             function onClick(e) {
-                //alert($(e.target).html());
-                $(e.target).toggleClass("selected2");
+                $(e.target).toggleClass("reserved");
             }
+
             function bookMeetingRoom() {
                 var value = $('#value').html();
                 var times = [];
                 $('li').each(function(index, elem) {
-                            if($(elem).hasClass('selected2')) {
+                            if($(elem).hasClass('reserved')) {
                                 times.push($(elem).html());
                             }
                         });
-               // if(value in storage)&&
-                if(times.length == 0) {
+
+                if (times.length == 0) {
                     delete storage[value];
                 } else {
                     storage[value] = times;
                 }
-
-
-               /* var str = '';
-                for( var key in storage) {
-
-                    str+=key + ' ' + storage[key] + ';||' ;
-                }
-                alert(str);*/
             }
+
             function highlightHours(currentDate) {
                 var hourValuesStor = storage[$('#value').html()];
                 var rule = storage.rule;
                 var hourValuesRule;
-                if (rule){
+
+                if (rule) {
                     hourValuesRule = storage.rule[currentDate.getDay()%7];
                 }
-
                 var hourValues = [];
+
                 if (hourValuesStor) {
                     hourValues = hourValues.concat(hourValuesStor);
                 }
+
                 if (hourValuesRule) {
                     hourValues = hourValues.concat(hourValuesRule);
                 }
 
-                var lis = $('li').toggleClass('selected2', false);
-                if(hourValues){
+                var lis = $('li').toggleClass('reserved', false);
+                if (hourValues) {
                     lis.each(function(index, elem) {
-                                if(hourValues.indexOf($(elem).html()) != -1) {
-                                    $(elem).addClass('selected2');
+                                if (hourValues.indexOf($(elem).html()) != -1) {
+                                    $(elem).addClass('reserved');
                                 }
 
                             });
                 }
             }
+
             function highlightDays(currentDate) {
                 var dayValues = [];
                 var  dateFromStorage;
                 var month = currentDate.getMonth();
+                var year = currentDate.getFullYear();
                 for(var key in storage) {
-
-                    if(key != 'rule') {
-
+                    if (key != 'rule') {
                         dateFromStorage = key.split('.');
 
-                        if(dateFromStorage[1] == month + 1) {
+                        if (dateFromStorage[1] == month + 1 && dateFromStorage[2] == year) {
                             dayValues.push(parseInt(dateFromStorage[0]).toString());
                         }
-                    }else {
+                    } else {
                         currentDate.setDate(1);
-
-
                         while (currentDate.getMonth() == month) {
 
                             if (currentDate.getDay()%7 in storage.rule) {
-
                                 dayValues.push(currentDate.getDate() + '');
                             }
                             currentDate.setDate(currentDate.getDate() + 1);
                         }
-
                     }
                 }
 
-                var tds = $('.date-cell').toggleClass('selected2', false);
-                if(dayValues){
+                var tds = $('.date-cell').toggleClass('reserved', false);
+                if (dayValues) {
                     tds.each(function(index, elem) {
                         if(dayValues.indexOf($(elem).html()) != -1) {
-                            $(elem).addClass('selected2');
+                            $(elem).addClass('reserved');
                         }
                     });
                 }
-
-
             }
-            function highlightRule() {
 
-            }
             function toggleWeekHoursDiv() {
                 $('#weekhours-holder').toggle();
-
             }
 
             function createRule() {
                 var dayNum;
                 var weekTable = $('#weekhours-holder');
                 var rule = {};
-                weekTable.find('.selected2')
+                weekTable.find('.reserved')
                         .each(function(index, elem) {
-
                             var row = $(elem).parent();
-
                             var dayName = row.find('.day-names').html();
-
                             switch (dayName) {
                                 case 'Пн':
                                     dayNum = 1;
@@ -211,7 +189,6 @@
                                 case 'Вс':
                                     dayNum = 0;
                                     break;
-
                             }
                             var hour = weekTable.find('th').eq(row.find('td').index($(elem))).html();
 
@@ -221,14 +198,10 @@
                                 rule[dayNum] = [];
                                 rule[dayNum].push(hour);
                             }
-
                         });
                 storage.rule = rule;
             }
-
-
         </script>
     </div>
-
 </body>
 </html>
