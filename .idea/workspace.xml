@@ -2,12 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb4f4109-7376-4f3a-a0f1-b48c164b3b19" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\i\WebstormProjects\BookingAMeetingRoom\calendar.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\i\WebstormProjects\BookingAMeetingRoom\calendar.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\i\WebstormProjects\BookingAMeetingRoom\head.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\i\WebstormProjects\BookingAMeetingRoom\i1.ico" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\i\WebstormProjects\BookingAMeetingRoom\weekHours.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="BookingAMeetingRoom.iws" />
@@ -298,7 +292,11 @@
       <created>1385772089292</created>
       <updated>1385772089292</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Проработал стили для основных елементов страницы.">
+      <created>1385915077677</created>
+      <updated>1385915077677</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
