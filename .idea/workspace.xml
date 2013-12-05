@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb4f4109-7376-4f3a-a0f1-b48c164b3b19" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\i\WebstormProjects\BookingAMeetingRoom\head.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\i\WebstormProjects\BookingAMeetingRoom\i1.ico" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="BookingAMeetingRoom.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,10 +25,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="0" selection-start="875" selection-end="875" vertical-scroll-proportion="0.7741935" vertical-offset="0" max-vertical-offset="3604">
+            <state line="64" column="22" selection-start="2571" selection-end="2571" vertical-scroll-proportion="-16.346153" vertical-offset="663" max-vertical-offset="3876">
               <folding />
             </state>
           </provider>
@@ -38,7 +37,7 @@
       <file leaf-file-name="calendar.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/calendar.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="125" column="1" selection-start="3601" selection-end="3601" vertical-scroll-proportion="0.0" vertical-offset="1419" max-vertical-offset="2227">
+            <state line="87" column="86" selection-start="2571" selection-end="2571" vertical-scroll-proportion="0.0" vertical-offset="1266" max-vertical-offset="2227">
               <folding />
             </state>
           </provider>
@@ -56,7 +55,7 @@
       <file leaf-file-name="main.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/styles/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="108" column="0" selection-start="1714" selection-end="1714" vertical-scroll-proportion="0.0" vertical-offset="1598" max-vertical-offset="2329">
+            <state line="109" column="1" selection-start="1716" selection-end="1716" vertical-scroll-proportion="0.0" vertical-offset="1037" max-vertical-offset="2329">
               <folding />
             </state>
           </provider>
@@ -65,7 +64,25 @@
       <file leaf-file-name="calendar.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/styles/calendar.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="23" selection-start="94" selection-end="94" vertical-scroll-proportion="0.0" vertical-offset="892" max-vertical-offset="1445">
+            <state line="65" column="17" selection-start="0" selection-end="1223" vertical-scroll-proportion="0.0" vertical-offset="892" max-vertical-offset="1445">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="calendar1.css" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/styles/calendar1.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="16" column="0" selection-start="213" selection-end="213" vertical-scroll-proportion="0.49186257" vertical-offset="0" max-vertical-offset="850">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main1.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/styles/main1.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="20" selection-start="250" selection-end="250" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2329">
               <folding />
             </state>
           </provider>
@@ -98,11 +115,13 @@
         <option value="$PROJECT_DIR$/calendar.js" />
         <option value="$PROJECT_DIR$/calendar.css" />
         <option value="$PROJECT_DIR$/main.css" />
-        <option value="$PROJECT_DIR$/scripts/calendar.js" />
         <option value="$PROJECT_DIR$/scripts/weekHours.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/styles/calendar.css" />
         <option value="$PROJECT_DIR$/styles/main.css" />
+        <option value="$PROJECT_DIR$/styles/main1.css" />
+        <option value="$PROJECT_DIR$/scripts/calendar.js" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/styles/calendar1.css" />
       </list>
     </option>
   </component>
@@ -138,6 +157,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -172,7 +192,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -293,7 +312,11 @@
       <created>1385935213595</created>
       <updated>1385935213595</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Начало перехода на bootstrap">
+      <created>1386280814629</created>
+      <updated>1386280814629</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -335,26 +358,13 @@
     <MESSAGE value="Проработал стили для основных елементов страницы." />
     <MESSAGE value="Проработал стили для основных элементов страницы." />
     <MESSAGE value="Подкорректировал стили для кроссбраузерности." />
-    <option name="LAST_COMMIT_MESSAGE" value="Подкорректировал стили для кроссбраузерности." />
+    <MESSAGE value="Начало перехода на bootstrap" />
+    <option name="LAST_COMMIT_MESSAGE" value="Начало перехода на bootstrap" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/scripts/weekHours.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="17" selection-start="865" selection-end="865" vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="680">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/styles/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="109" column="0" selection-start="1689" selection-end="1689" vertical-scroll-proportion="0.0" vertical-offset="929" max-vertical-offset="2312">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/styles/calendar.css">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1445">
@@ -418,6 +428,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/styles/calendar.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="65" column="17" selection-start="0" selection-end="1223" vertical-scroll-proportion="0.0" vertical-offset="892" max-vertical-offset="1445">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="109" column="1" selection-start="1716" selection-end="1716" vertical-scroll-proportion="0.0" vertical-offset="1037" max-vertical-offset="2329">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/weekHours.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="30" selection-start="806" selection-end="806" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="680">
@@ -427,28 +451,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/calendar.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="125" column="1" selection-start="3601" selection-end="3601" vertical-scroll-proportion="0.0" vertical-offset="1864" max-vertical-offset="2227">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/styles/calendar.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="23" selection-start="94" selection-end="94" vertical-scroll-proportion="0.0" vertical-offset="892" max-vertical-offset="1445">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/styles/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="108" column="0" selection-start="1714" selection-end="1714" vertical-scroll-proportion="0.0" vertical-offset="1598" max-vertical-offset="2329">
+        <state line="87" column="86" selection-start="2571" selection-end="2571" vertical-scroll-proportion="0.0" vertical-offset="1266" max-vertical-offset="2227">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="0" selection-start="875" selection-end="875" vertical-scroll-proportion="0.7741935" vertical-offset="0" max-vertical-offset="3604">
+        <state line="64" column="22" selection-start="2571" selection-end="2571" vertical-scroll-proportion="-16.346153" vertical-offset="663" max-vertical-offset="3876">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles/main1.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="20" selection-start="250" selection-end="250" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2329">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles/calendar1.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="0" selection-start="213" selection-end="213" vertical-scroll-proportion="0.49186257" vertical-offset="0" max-vertical-offset="850">
           <folding />
         </state>
       </provider>

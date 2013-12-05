@@ -2,10 +2,13 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link type="text/css" rel="stylesheet" href="styles/calendar.css">
-    <link type="text/css" rel="stylesheet" href="styles/main.css">
+    <link type="text/css" rel="stylesheet" href="styles/calendar1.css">
+    <link type="text/css" rel="stylesheet" href="styles/main1.css">
+    <link href="css/bootstrap.css" rel="stylesheet" media="screen">
     <script src="http://code.jquery.com/jquery-latest.js"></script>
+
     <link rel="SHORTCUT ICON" href="images/i1.ico">
+    <script src="js/bootstrap.js"></script>
     <script src="scripts/weekHours.js"></script>
     <script src="scripts/calendar.js"></script>
     <title>Бронирование конференц зала</title>
@@ -23,35 +26,48 @@
 
         <div id="calendar-holder"></div>
 
-        <div id="form" style="display: none">
-            <div id="value"></div>
-
-            <ul id="schedule">
-                <li>8:00</li>
-                <li>9:00</li>
-                <li>10:00</li>
-                <li>11:00</li>
-                <li>12:00</li>
-                <li>13:00</li>
-                <li>14:00</li>
-                <li>15:00</li>
-                <li>16:00</li>
-                <li>17:00</li>
-                <li>18:00</li>
-                <li>19:00</li>
+        <div class="tabbable">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab1" data-toggle="tab">Посмотреть на выбранную дату</a></li>
+                <li><a href="#tab2" data-toggle="tab">Редактор правил</a></li>
+                <li><a href="#tab3" data-toggle="tab">Посмотреть в этом месяце</a></li>
             </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab1">
+                    <div id="value"></div>
 
-            <div class="buttons">
-                <button onclick="bookMeetingRoom(); highlightDays(calendar.getValue());">Подтвердить</button>
-                <button onclick="toggleWeekHoursDiv()">Редактор правил</button>
-            </div>
+                    <ul id="schedule">
+                        <li>8:00</li>
+                        <li>9:00</li>
+                        <li>10:00</li>
+                        <li>11:00</li>
+                        <li>12:00</li>
+                        <li>13:00</li>
+                        <li>14:00</li>
+                        <li>15:00</li>
+                        <li>16:00</li>
+                        <li>17:00</li>
+                        <li>18:00</li>
+                        <li>19:00</li>
+                    </ul>
 
-            <div id="weekhours-holder">
-                <div class="buttons">
-                    <button onclick="createRule(); toggleWeekHoursDiv(); highlightDays(calendar.getValue());">Применить</button>
+                    <div class="buttons">
+                        <button onclick="bookMeetingRoom(); highlightDays(calendar.getValue());">Подтвердить</button>
+
+                    </div>
                 </div>
-            </div>
+                <div class="tab-pane" id="tab2">
+                    <div id="weekhours-holder">
+                        <div class="buttons">
+                            <button onclick="createRule(); highlightDays(calendar.getValue());">Применить</button>
+                        </div>
+                    </div>
+                </div>
 
+            </div>
+        </div>
+
+        <div id="form">
         </div>
 
         <script>

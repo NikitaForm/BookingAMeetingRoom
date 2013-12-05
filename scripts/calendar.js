@@ -85,7 +85,7 @@ function Calendar(date) {
 
     function renderCalendarTable(d, isSimple) {
         var month = d.getMonth();
-        var table = ['<table class="striped-table"><caption>' + monthNames[month] + ' ' + year +
+        var table = ['<table class="table table-striped table-bordered table-condensed"><caption>' + monthNames[month] + ' ' + year +
             '</caption><tr><th>Пн</th><th>Вт</th><th>Ср</th><th>Чт</th><th>Пт</th><th>Сб</th>' +
             '<th>Вс</th></tr><tr>'];
         for (var i = 0; i < getDay(d); i++){

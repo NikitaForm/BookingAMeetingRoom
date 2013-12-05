@@ -1,0 +1,44 @@
+
+
+.date-cell:hover {
+    background: #eee;
+    cursor: pointer;
+}
+
+.date-cell.selected {
+    font-weight: bold;
+    border: 1px dashed;
+}
+
+.striped-table caption {
+    text-align: center;
+    font-weight: bold;
+}
+
+#calendar-holder{
+    height: 196px;
+}
+
+.nearbyMonth {
+    opacity: 0.45;
+}
+
+.nearbyMonth td, .nearbyMonth th{
+    font-size: 11px;
+    width: 14px;
+}
+
+.nearbyMonth th {
+    background-color: #8d8c8e;
+}
+
+.calendar {
+    float: left;
+    width: 100%;
+}
+
+.calendar div {
+    float: left;
+    width: 33.333%;
+}
+
