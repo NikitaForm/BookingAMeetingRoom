@@ -14,17 +14,62 @@
     <title>Бронирование конференц зала</title>
 </head>
 <body>
-    <div id="header">
-        <img src="images/head.jpg">
+    <div class="navbar">
+        <div class="navbar-inner">
+
+            <ul class="nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        Выбор зала
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                        <li><a tabindex="-1">Рубиновый</a></li>
+                        <li><a tabindex="-1">Изумрудный</a></li>
+                        <li><a tabindex="-1">Лазурный</a></li>
+                        <li><a tabindex="-1">Золотистый</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <span class="brand">Услуги резервирования</span>
+        </div>
     </div>
-    <div id="main">
-        <div id="navigator">
-            <button id="left" onclick="calendar.previousMonth()">_</button>
-            <button onclick="calendar.setValue(new Date())">Сегодня</button>
-            <button id="right" onclick="calendar.nextMonth()">_</button>
+
+    <div id="main" class="container">
+        <div class="row">
+            <div class="span4 text-center">
+                <button id="left" onclick="calendar.previousMonth()">_</button>
+            </div>
+            <div class="span4 text-center">
+                <button onclick="calendar.setValue(new Date())" >Сегодня</button>
+            </div>
+            <div class="span4 text-center">
+                <button id="right" onclick="calendar.nextMonth()">_</button>
+            </div>
         </div>
 
-        <div id="calendar-holder"></div>
+        <div id="calendar-holder" style="display: none" >
+
+        </div>
+
+
+        <div id="myCarousel" class="carousel slide">
+            <div class="carousel-inner">
+                <div class="item active">
+                    <div class="holder"></div>
+
+                </div>
+                <div class="item">
+                    <div class="holder"></div>
+
+                </div>
+
+            </div>
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev" id="left-control">&lsaquo;</a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next" id="right-control">&rsaquo;</a>
+        </div>
+
+
 
         <div class="tabbable">
             <ul class="nav nav-tabs">
@@ -33,52 +78,64 @@
                 <li><a href="#tab3" data-toggle="tab">Посмотреть в этом месяце</a></li>
             </ul>
             <div class="tab-content">
-                <div class="tab-pane active" id="tab1">
-                    <div id="value"></div>
+                <div class="tab-pane active row" id="tab1">
 
-                    <ul id="schedule">
-                        <li>8:00</li>
-                        <li>9:00</li>
-                        <li>10:00</li>
-                        <li>11:00</li>
-                        <li>12:00</li>
-                        <li>13:00</li>
-                        <li>14:00</li>
-                        <li>15:00</li>
-                        <li>16:00</li>
-                        <li>17:00</li>
-                        <li>18:00</li>
-                        <li>19:00</li>
-                    </ul>
-
-                    <div class="buttons">
-                        <button onclick="bookMeetingRoom(); highlightDays(calendar.getValue());">Подтвердить</button>
-
+                    <div class="span3 text-center">
+                        <div id="value"></div>
                     </div>
+                    <div class="span7 text-center">
+                        <ul id="schedule">
+                            <li>8:00</li>
+                            <li>9:00</li>
+                            <li>10:00</li>
+                            <li>11:00</li>
+                            <li>12:00</li>
+                            <li>13:00</li>
+                            <li>14:00</li>
+                            <li>15:00</li>
+                            <li>16:00</li>
+                            <li>17:00</li>
+                            <li>18:00</li>
+                            <li>19:00</li>
+                        </ul>
+                    </div>
+                    <div class="span2 text-center">
+                            <button class="btn btn-warning" onclick="bookMeetingRoom(); highlightDays(calendar.getValue()); saveStorage();">Подтвердить</button>
+                    </div>
+
                 </div>
                 <div class="tab-pane" id="tab2">
-                    <div id="weekhours-holder">
-                        <div class="buttons">
-                            <button onclick="createRule(); highlightDays(calendar.getValue());">Применить</button>
+                    <div class="row">
+                        <div class="span10 offset1 text-center" id="weekhours-holder">
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="span2 offset10 text-center">
+                                <button class="btn btn-warning" onclick="createRule(); highlightDays(calendar.getValue()); saveStorage();">Применить</button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="tab-pane" id="tab3">
+                    <div>Тут будет список</div>
                 </div>
 
             </div>
         </div>
 
-        <div id="form">
-        </div>
 
         <script>
-            var storage = {};
-            var calendar = new Calendar(new Date());
+            var storage;
+            var d = new Date();
+            var calendar = new Calendar(d);
             var weekHours = new WeekHours();
-            $('#calendar-holder').append(calendar.getElement());
+            var calValue = calendar.getElement();
+            $('#calendar-holder').append(calValue);
+            initStorage();
 
             $(calendar).on("select", function(e) {
                 $('#value').html(e.value);
-                $('#form').toggle(true);
+
                 highlightDays(calendar.getValue());
                 highlightHours(calendar.getValue());
             });
@@ -87,6 +144,32 @@
                     .on('click', 'td:not(.day-names)', onClick);
 
             $('#schedule').on('click', 'li', onClick);
+
+            $('#right-control').on('click', nextMonth);
+            $('#left-control').on('click', prevMonth);
+
+            function initStorage() {
+                if(localStorage["storage"]) {
+                    storage = JSON.parse(localStorage["storage"]);
+                } else {
+                    storage = {};
+                }
+            }
+            function saveStorage() {
+                var str = JSON.stringify(storage, "", 4);
+                localStorage["storage"] = str;
+                alert(str);
+
+            }
+
+            function nextMonth(e) {
+                calendar.nextMonth();
+                $('.item.active').siblings().find('.holder').empty().append($('#calendar-holder').html());
+            }
+            function prevMonth(e) {
+                calendar.previousMonth()
+                $('.item.active').siblings().find('.holder').empty().append($('#calendar-holder').html());
+            }
 
             function onClick(e) {
                 $(e.target).toggleClass("reserved");
@@ -107,6 +190,10 @@
                     storage[value] = times;
                 }
             }
+
+            $('.carousel').carousel({
+                interval:false
+            });
 
             function highlightHours(currentDate) {
                 var hourValuesStor = storage[$('#value').html()];

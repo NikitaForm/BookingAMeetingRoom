@@ -37,7 +37,7 @@ function Calendar(date) {
             render();
         }
 
-        if (!quiet) $(self).triggerHandler({
+        if (!quiet) $(self).trigger({
             type: "select",
             value: ((day < 10) ? '0' + day : day) + '.' + ((month < 9) ? '0' + (month + 1) : (month + 1)) + '.' + year
         });
@@ -45,14 +45,14 @@ function Calendar(date) {
 
     function render() {
         if (!elem) {
-            elem = $('<div class="calendar"/>')
+            elem = $('<div class="calendar row"/>')
                 .on('click', '.date-cell', onDateCellClick);
         }
 
         if (showYear != year || showMonth != month) {
-            elem.html(($('<div class="currentMonth"/>').html(renderCalendarTable(new Date(year, month)))));
-            elem.append($('<div class="nearbyMonth"/>').html(renderCalendarTable(new Date(year, month + 1), 1)));
-            elem.prepend($('<div class="nearbyMonth"/>').html(renderCalendarTable(new Date(year, month - 1), 1)));
+            elem.html(($('<div class="currentMonth span4"/>').html(renderCalendarTable(new Date(year, month)))));
+            elem.append($('<div class="nearbyMonth span3"/>').html(renderCalendarTable(new Date(year, month + 1), 1)));
+            elem.prepend($('<div class="nearbyMonth span3 offset1"/>').html(renderCalendarTable(new Date(year, month - 1), 1)));
             showYear = year;
             showMonth = month;
         }
@@ -85,7 +85,7 @@ function Calendar(date) {
 
     function renderCalendarTable(d, isSimple) {
         var month = d.getMonth();
-        var table = ['<table class="table table-striped table-bordered table-condensed"><caption>' + monthNames[month] + ' ' + year +
+        var table = ['<table class="striped-table table-bordered"><caption>' + monthNames[month] + ' ' + year +
             '</caption><tr><th>Пн</th><th>Вт</th><th>Ср</th><th>Чт</th><th>Пт</th><th>Сб</th>' +
             '<th>Вс</th></tr><tr>'];
         for (var i = 0; i < getDay(d); i++){

@@ -1,30 +1,16 @@
-button:hover {
-    background: #C94727;
-    cursor: pointer;
-}
 
 * {
     font-family: 'Museo Sans', 'Lucida Grande', Arial, sans-serif;
     font-size: 14px;
 }
 
-button {
-    margin: 10px;
-    font-size: 14px;
-    font-weight: bold;
-    color: seashell;
-    background: #F2744A;
-    padding: 5px;
-    border: 0;
-    outline: none;
-}
 
 #left {
     background-image: url(../images/images_left_copy.jpg);
     width: 26px;
     height: 26px;
     color: transparent;
-    margin-left: 40px;
+
 }
 
 #left:hover {
@@ -42,30 +28,20 @@ button {
 #right:hover {
     background-position: left;
 }
-body {
-    background: #e6ffff;
-}
 
 #main {
-    width: 760px;
-    height: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 20px;
-    padding-top: 0;
     background-color: #ffffe6;
 }
-#navigator {
-    width: 250px;
-    margin-left: auto;
-    margin-right: auto;
-}
+
 
 #schedule {
     list-style: none;
     float: left;
-    padding-left: 10px;
     margin: 0;
+    border: 1px solid #e1e0e0;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
 }
 
 #header {
@@ -73,13 +49,17 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
+.reserved{
+
+    text-decoration: underline;
+    background: #f98690;
+}
 
 #schedule li {
     list-style: none;
     float: left;
     padding: 6px;
-    border: 1px solid gray;
-    border-collapse: collapse;
+
     cursor: pointer;
     font-size: 90%;
     background: #e1e0e0;
@@ -87,33 +67,17 @@ body {
     text-align: center;
 }
 
-.reserved {
 
-    text-decoration: underline;
-    background: #f98690;
-}
 
 #value {
-    display: inline;
-    float: left;
+
     background-color: #9F2D37;
     font-weight: bold;
     color: whitesmoke;
     padding: 6px;
-    margin-left: 55px;
-}
-
-#weekhours-holder {
-
-    clear:both;
 
 }
 
-.buttons {
-    float: right;
-    margin-right: 40px;
-    margin-bottom: 10px;
-}
 
 .weekhours th {
     width: 36px;
