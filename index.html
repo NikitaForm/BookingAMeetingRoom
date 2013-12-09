@@ -14,6 +14,9 @@
     <title>Бронирование конференц зала</title>
 </head>
 <body>
+
+
+    <div id="main" class="container">
     <div class="navbar">
         <div class="navbar-inner">
 
@@ -34,9 +37,7 @@
             <span class="brand">Услуги резервирования</span>
         </div>
     </div>
-
-    <div id="main" class="container">
-        <div class="row">
+        <div class="row" style="display: none">
             <div class="span4 text-center">
                 <button id="left" onclick="calendar.previousMonth()">_</button>
             </div>
@@ -128,12 +129,21 @@
             var storage;
             var d = new Date();
             var calendar = new Calendar(d);
+            var calendar2 = new Calendar(d);
             var weekHours = new WeekHours();
-            var calValue = calendar.getElement();
-            $('#calendar-holder').append(calValue);
+          //  var calValue = calendar.getElement();
+            //$('#calendar-holder').append(calValue);
+            $('.item.active').siblings().find('.holder').append(calendar.getElement());
+            $('.item.active').find('.holder').append(calendar2.getElement());
             initStorage();
 
             $(calendar).on("select", function(e) {
+                $('#value').html(e.value);
+
+                highlightDays(calendar.getValue());
+                highlightHours(calendar.getValue());
+            });
+            $(calendar2).on("select", function(e) {
                 $('#value').html(e.value);
 
                 highlightDays(calendar.getValue());
@@ -164,11 +174,11 @@
 
             function nextMonth(e) {
                 calendar.nextMonth();
-                $('.item.active').siblings().find('.holder').empty().append($('#calendar-holder').html());
+                calendar2.nextMonth();
             }
             function prevMonth(e) {
-                calendar.previousMonth()
-                $('.item.active').siblings().find('.holder').empty().append($('#calendar-holder').html());
+                calendar.previousMonth();
+                calendar2.previousMonth();
             }
 
             function onClick(e) {
