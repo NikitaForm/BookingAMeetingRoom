@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link type="text/css" rel="stylesheet" href="styles/calendar1.css">
+    <link type="text/css" rel="stylesheet" href="styles/main1.css">
+    <link href="css/bootstrap.css" rel="stylesheet" media="screen">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+    <link rel="SHORTCUT ICON" href="images/i1.ico">
+    <script src="js/bootstrap.js"></script>
+    <script src="scripts/weekHours.js"></script>
+    <script src="scripts/calendar.js"></script>
+    <title>Бронирование конференц зала</title>
+</head>
+<body>
+
+
+    <div id="main" class="container">
+        <div class="navbar">
+            <div class="navbar-inner">
+
+                <ul class="nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Выбор зала
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" id="roomslist">
+
+                        </ul>
+                    </li>
+                </ul>
+                <span class="brand">Услуги резервирования</span>
+            </div>
+        </div>
+        <div id="greeting">
+            <h3>
+                Выберете конференцзал
+            </h3>
+        </div>
+        <div class="row" style="display: none">
+            <div class="span4 text-center">
+                <button id="left" onclick="calendar.previousMonth()">_</button>
+            </div>
+            <div class="span4 text-center">
+                <button onclick="calendar.setValue(new Date())" >Сегодня</button>
+            </div>
+            <div class="span4 text-center">
+                <button id="right" onclick="calendar.nextMonth()">_</button>
+            </div>
+        </div>
+
+        <div id="calendar-holder" style="display: none" >
+
+        </div>
+
+
+        <div id="myCarousel" class="carousel slide">
+            <div class="carousel-inner">
+                <div class="item active" >
+                    <div id="carousel1"></div>
+
+                </div>
+                <div class="item">
+                    <div id="carousel2" ></div>
+
+                </div>
+
+            </div>
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev" id="left-control">&lsaquo;</a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next" id="right-control">&rsaquo;</a>
+        </div>
+
+
+
+        <div class="tabbable">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab1" data-toggle="tab">Посмотреть на выбранную дату</a></li>
+                <li><a href="#tab2" data-toggle="tab">Редактор правил</a></li>
+                <li><a href="#tab3" data-toggle="tab">Посмотреть в этом месяце</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active row" id="tab1">
+
+                    <div class="span3 text-center">
+                        <div id="value"></div>
+                    </div>
+                    <div class="span7 text-center">
+                        <ul id="schedule">
+                            <li>8:00</li>
+                            <li>9:00</li>
+                            <li>10:00</li>
+                            <li>11:00</li>
+                            <li>12:00</li>
+                            <li>13:00</li>
+                            <li>14:00</li>
+                            <li>15:00</li>
+                            <li>16:00</li>
+                            <li>17:00</li>
+                            <li>18:00</li>
+                            <li>19:00</li>
+                        </ul>
+                    </div>
+                    <div class="span2 text-center">
+                            <button class="btn btn-warning" onclick="bookMeetingRoom(); highlightDays(calendar.getValue()); saveStorage();">Подтвердить</button>
+                    </div>
+
+                </div>
+                <div class="tab-pane" id="tab2">
+                    <div class="row">
+                        <div class="span10 offset1 text-center" id="weekhours-holder">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="span2 offset10 text-center">
+                                <button class="btn btn-warning" onclick="createRule(); highlightDays(calendar.getValue()); saveStorage();">Применить</button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="tab-pane" id="tab3">
+                    <div>Тут будет список</div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <script>
+            var storage;
+            var roomsList;
+            var currentRoom;
+            var d = new Date();
+            var calendar = new Calendar(d);
+            var calendar2 = new Calendar(d);
+            var weekHours = new WeekHours();
+          //  var calValue = calendar.getElement();
+            //$('#calendar-holder').append(calValue);
+            $('#carousel1').append(calendar.getElement());
+            $('#carousel2').append(calendar2.getElement());
+            initStorage();
+
+            getRoomsList();
+
+            $(calendar).on("select", function(e) {
+                $('#value').html(e.value);
+
+                highlightDays(calendar.getValue());
+                highlightHours(calendar.getValue());
+            });
+            $(calendar2).on("select", function(e) {
+                $('#value').html(e.value);
+
+                highlightDays(calendar.getValue());
+                highlightHours(calendar.getValue());
+            });
+            $('#roomslist').on("click", 'li', onLiClick);
+            $('#weekhours-holder').prepend(weekHours.getElement())
+                    .on('click', 'td:not(.day-names)', onClick);
+
+            $('#schedule').on('click', 'li', onClick);
+
+            $('#right-control').on('click', nextMonth);
+            $('#left-control').on('click', prevMonth);
+
+            function onLiClick(e) {
+                currentRoom = $(e.target).html();
+                //alert(currentRoom);
+                $('#greeting').html('<h3>Добро пожаловать в ' + currentRoom + ' конференцзал</h3>');
+                if(!storage[currentRoom]) {
+                    storage[currentRoom] = {};
+                }
+                highlightDays(calendar.getValue());
+                highlightHours(calendar.getValue());
+            }
+
+            function initStorage() {
+               /* $(function() {
+
+                    $.ajax({
+                        url:'/recieve'
+                        , type:'GET'
+                        , data:'jsonData'
+                        , success: function(res) {
+                            alert(res);
+                            var storageLoc = JSON.parse(res);
+                            if(storageLoc) {
+                                storage = storageLoc;
+                            } else {
+                                storage = {};
+                            }
+                        }
+                    });
+                    return false;
+                });*/
+
+                if(localStorage["storage"]) {
+                    storage = JSON.parse(localStorage["storage"]);
+                } else {
+                    storage = {};
+                }
+            }
+
+            function saveStorage() {
+                var str = JSON.stringify(storage, "", 4);
+               // localStorage["storage"] = str;
+                alert(str);
+                $(function() {
+
+                        $.ajax({
+                            url:'/save'
+                            , type:'POST'
+                            , data: {
+                                'storage': str
+                            }
+                            , success: function(res) {
+                                alert(res);
+                            }
+                        });
+                        return false;
+                    });
+
+
+            }
+
+            function nextMonth(e) {
+                setTimeout(function() {
+                                        calendar.nextMonth();
+                                        calendar2.nextMonth();
+                                        }, 400);
+
+            }
+
+            function prevMonth(e) {
+                setTimeout(function() {
+                                        calendar.previousMonth();
+                                        calendar2.previousMonth();
+                                        }, 400);
+            }
+
+            function onClick(e) {
+                $(e.target).toggleClass("reserved");
+            }
+
+            function bookMeetingRoom() {
+                var value = $('#value').html();
+                var times = [];
+                $('li').each(function(index, elem) {
+                            if($(elem).hasClass('reserved')) {
+                                times.push($(elem).html());
+                            }
+                        });
+
+                if (times.length == 0) {
+                    delete storage[currentRoom][value];
+                } else {
+                    storage[currentRoom][value] = times;
+                }
+            }
+
+            $('.carousel').carousel({
+                interval:false
+            });
+
+            function highlightHours(currentDate) {
+                var hourValuesStor = storage[currentRoom][$('#value').html()];
+                var rule = storage[currentRoom].rule;
+                var hourValuesRule;
+
+                if (rule) {
+                    hourValuesRule = storage[currentRoom].rule[currentDate.getDay()%7];
+                }
+                var hourValues = [];
+
+                if (hourValuesStor) {
+                    hourValues = hourValues.concat(hourValuesStor);
+                }
+
+                if (hourValuesRule) {
+                    hourValues = hourValues.concat(hourValuesRule);
+                }
+
+                var lis = $('li').toggleClass('reserved', false);
+                if (hourValues) {
+                    lis.each(function(index, elem) {
+                                if (hourValues.indexOf($(elem).html()) != -1) {
+                                    $(elem).addClass('reserved');
+                                }
+
+                            });
+                }
+            }
+
+            function highlightDays(currentDate) {
+                var dayValues = [];
+                var  dateFromStorage;
+                var month = currentDate.getMonth();
+                var year = currentDate.getFullYear();
+                for(var key in storage[currentRoom]) {
+                    if (key != 'rule') {
+                        dateFromStorage = key.split('.');
+
+                        if (dateFromStorage[1] == month + 1 && dateFromStorage[2] == year) {
+                            dayValues.push(parseInt(dateFromStorage[0]).toString());
+                        }
+                    } else {
+                        currentDate.setDate(1);
+                        while (currentDate.getMonth() == month) {
+
+                            if (currentDate.getDay()%7 in storage[currentRoom].rule) {
+                                dayValues.push(currentDate.getDate() + '');
+                            }
+                            currentDate.setDate(currentDate.getDate() + 1);
+                        }
+                    }
+                }
+
+                var tds = $('.date-cell').toggleClass('reserved', false);
+                if (dayValues) {
+                    tds.each(function(index, elem) {
+                        if(dayValues.indexOf($(elem).html()) != -1) {
+                            $(elem).addClass('reserved');
+                        }
+                    });
+                }
+            }
+
+            function getRoomsList() {
+                $.ajax({
+                    url:'/rooms'
+                    , type:'GET'
+                    , data:'jsonData'
+                    , success: function(res) {
+                        roomsList = res;
+
+                        for (var i = 0; i < res.length; i++) {
+                            $('#roomslist').append($('<li><a tabindex="-1">' + res[i] + '</a></li>'));
+                        }
+                    }
+                });
+            }
+
+            function createRule() {
+                var dayNum;
+                var weekTable = $('#weekhours-holder');
+                var rule = {};
+                weekTable.find('.reserved')
+                        .each(function(index, elem) {
+                            var row = $(elem).parent();
+                            var dayName = row.find('.day-names').html();
+                            switch (dayName) {
+                                case 'Пн':
+                                    dayNum = 1;
+                                    break;
+                                case 'Вт':
+                                    dayNum = 2;
+                                    break;
+                                case 'Ср':
+                                    dayNum = 3;
+                                    break;
+                                case 'Чт':
+                                    dayNum = 4;
+                                    break;
+                                case 'Пт':
+                                    dayNum = 5;
+                                    break;
+                                case 'Сб':
+                                    dayNum = 6;
+                                    break;
+                                case 'Вс':
+                                    dayNum = 0;
+                                    break;
+                            }
+                            var hour = weekTable.find('th').eq(row.find('td').index($(elem))).html();
+
+                            if ( dayNum in rule ) {
+                                rule[dayNum].push(hour);
+                            } else {
+                                rule[dayNum] = [];
+                                rule[dayNum].push(hour);
+                            }
+                        });
+                storage[currentRoom].rule = rule;
+            }
+        </script>
+    </div>
+</body>
+</html>

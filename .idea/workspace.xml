@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bb4f4109-7376-4f3a-a0f1-b48c164b3b19" name="Default" comment="Добавил функционал для выделения тех дней в календаре, в которых есть забронирование время. Добавил таблицу-&quot;шахматку&quot; для создания правил  повторяющегося резервирования">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\nikita\WebstormProjects\BookingAMeetingRoom\.idea\.name" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/BookingAMeetingRoom.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="" />
-    </list>
-    <ignored path="BookingAMeetingRoom.iws" />
+    <list default="true" id="9ef114e4-3c4b-4fe9-96ed-7545eefe16bb" name="Default" comment="" />
+    <ignored path="bmr_server.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,79 +19,68 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
-    <favorites_list name="BookingAMeetingRoom" />
+    <favorites_list name="bmr_server" />
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="package.json" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="15" column="17" selection-start="338" selection-end="338" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="374">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.json" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="18" selection-start="240" selection-end="240" vertical-scroll-proportion="-6.5384617" vertical-offset="0" max-vertical-offset="306">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mongoose.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/libs/mongoose.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="22" column="3" selection-start="458" selection-end="458" vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="578">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="server.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="37" selection-start="608" selection-end="608" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1581">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/libs/config.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/index.html">
+        <entry file="file://$PROJECT_DIR$/public/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="133" column="26" selection-start="5106" selection-end="5106" vertical-scroll-proportion="0.19465649" vertical-offset="2159" max-vertical-offset="5355">
-              <folding>
-                <element signature="n#style#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bootstrap.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/bootstrap.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="286" column="12" selection-start="8047" selection-end="8055" vertical-scroll-proportion="0.0" vertical-offset="5658" max-vertical-offset="36788">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="carousel.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/examples/carousel.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="352" column="29" selection-start="8709" selection-end="10650" vertical-scroll-proportion="0.0" vertical-offset="5984" max-vertical-offset="7786">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main1.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/styles/main1.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="0" selection-start="715" selection-end="715" vertical-scroll-proportion="0.0" vertical-offset="576" max-vertical-offset="1717">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="weekHours.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/weekHours.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="64" selection-start="266" selection-end="266" vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="680">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="calendar1.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/styles/calendar1.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="13" selection-start="277" selection-end="277" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="1224">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bootstrap.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/bootstrap.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1849" column="39" selection-start="31748" selection-end="31866" vertical-scroll-proportion="0.0" vertical-offset="31311" max-vertical-offset="104941">
+            <state line="174" column="52" selection-start="6551" selection-end="6551" vertical-scroll-proportion="0.7234042" vertical-offset="2720" max-vertical-offset="6698">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="calendar.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/calendar.js">
+        <entry file="file://$PROJECT_DIR$/public/scripts/calendar.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="0" selection-start="876" selection-end="876" vertical-scroll-proportion="0.0" vertical-offset="663" max-vertical-offset="2227">
+            <state line="58" column="0" selection-start="1738" selection-end="1738" vertical-scroll-proportion="0.0" vertical-offset="890" max-vertical-offset="2227">
               <folding />
             </state>
           </provider>
@@ -113,11 +94,9 @@
     </FindUsagesManager>
   </component>
   <component name="Git.Settings">
-    <option name="SYNC_SETTING" value="SYNC" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitLogSettings">
-    <option name="myStructureFilterPaths" />
     <option name="myDateState">
       <MyDateState />
     </option>
@@ -125,16 +104,14 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/Calendar.js" />
-        <option value="$PROJECT_DIR$/weekHours.js" />
-        <option value="$PROJECT_DIR$/calendar.css" />
-        <option value="$PROJECT_DIR$/calendar.js" />
-        <option value="$PROJECT_DIR$/css/bootstrap.css" />
-        <option value="$PROJECT_DIR$/scripts/weekHours.js" />
-        <option value="$PROJECT_DIR$/styles/calendar1.css" />
-        <option value="$PROJECT_DIR$/styles/main1.css" />
-        <option value="$PROJECT_DIR$/scripts/calendar.js" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/server2.js" />
+        <option value="$PROJECT_DIR$/test/test.html" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/libs/mongoose.js" />
+        <option value="$PROJECT_DIR$/server.js" />
+        <option value="$PROJECT_DIR$/config.json" />
+        <option value="$PROJECT_DIR$/public/index.html" />
       </list>
     </option>
   </component>
@@ -143,6 +120,28 @@
     <option name="y" value="-9" />
     <option name="width" value="1384" />
     <option name="height" value="738" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>GeneralJavaScript</id>
+          </State>
+          <State>
+            <id>JavaScript</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>JSJQueryEfficiency</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -170,46 +169,49 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="BookingAMeetingRoom" />
+              <option name="myItemId" value="bmr_server" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="BookingAMeetingRoom" />
+              <option name="myItemId" value="bmr_server" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="BookingAMeetingRoom" />
+              <option name="myItemId" value="bmr_server" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="BookingAMeetingRoom" />
+              <option name="myItemId" value="bmr_server" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="BookingAMeetingRoom" />
+              <option name="myItemId" value="bmr_server" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="styles" />
+              <option name="myItemId" value="public" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="BookingAMeetingRoom" />
+              <option name="myItemId" value="bmr_server" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="BookingAMeetingRoom" />
+              <option name="myItemId" value="bmr_server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -219,77 +221,69 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="BookingAMeetingRoom" />
+              <option name="myItemId" value="bmr_server" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="BookingAMeetingRoom" />
+              <option name="myItemId" value="bmr_server" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
+              <option name="myItemId" value="node_modules" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="BookingAMeetingRoom" />
+              <option name="myItemId" value="bmr_server" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="BookingAMeetingRoom" />
+              <option name="myItemId" value="bmr_server" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="examples" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BookingAMeetingRoom" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BookingAMeetingRoom" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
+              <option name="myItemId" value="libs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="39" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="53" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="51" />
-    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="53" />
-    <property name="DefaultHtmlFileTemplate" value="Html5" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="497" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="473" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="59" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="59" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
+    <property name="recentsLimit" value="5" />
+    <property name="options.lastSelected" value="settings.nodejs" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="FullScreen" value="false" />
-    <property name="options.searchVisible" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="Html5" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\i\WebstormProjects\bmr_server\public" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Node.js.server.js">
+    <configuration default="false" name="server.js" type="NodeJSConfigurationType" factoryName="Node.js" singleton="true" temporary="true" path-to-node="C:/Program Files/nodejs/node" path-to-js-file="server.js" working-dir="$PROJECT_DIR$">
+      <browser start="false" url="" with-js-debugger="false" />
+      <RunnerSettings RunnerId="NodeJS.debug" />
+      <RunnerSettings RunnerId="NodeJS.run" />
+      <ConfigurationWrapper RunnerId="NodeJS.debug" />
+      <ConfigurationWrapper RunnerId="NodeJS.run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="index.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="C:/Program Files/nodejs/node" path-to-js-file="index.js" working-dir="$PROJECT_DIR$/test">
+      <browser start="false" url="" with-js-debugger="false" />
+      <RunnerSettings RunnerId="NodeJS.run" />
+      <ConfigurationWrapper RunnerId="NodeJS.run" />
+      <method />
+    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -319,7 +313,17 @@
       <browser start="false" url="" with-js-debugger="false" />
       <method />
     </configuration>
-    <list size="0" />
+    <list size="3">
+      <item index="0" class="java.lang.String" itemvalue="Node.js.app.js" />
+      <item index="1" class="java.lang.String" itemvalue="Node.js.server.js" />
+      <item index="2" class="java.lang.String" itemvalue="Node.js.index.js" />
+    </list>
+    <recent_temporary>
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="Node.js.server.js" />
+        <item index="1" class="java.lang.String" itemvalue="Node.js.index.js" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
   <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="all">
@@ -341,52 +345,30 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="bb4f4109-7376-4f3a-a0f1-b48c164b3b19" name="Default" comment="" />
-      <created>1385238424306</created>
-      <updated>1385238424306</updated>
+      <changelist id="9ef114e4-3c4b-4fe9-96ed-7545eefe16bb" name="Default" comment="" />
+      <created>1386713500821</created>
+      <updated>1386713500821</updated>
     </task>
-    <task id="LOCAL-00001" summary="Первый коммит">
-      <created>1385415934762</created>
-      <updated>1385415934762</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Добавил навигацию по датам, временную шкалу, объект-хранилище для информации по резервированию, реализовал механизм записи в хранилище.">
-      <created>1385509115727</created>
-      <updated>1385509115727</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Создал стили для отображения главной страницы, реализовал функцию highlightHours() для получения зарезервированного времени по конкретной дате и выделения на временной шкале.">
-      <created>1385591766932</created>
-      <updated>1385591766932</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Создал стили для отображения главной страницы, реализовал функцию highlightHours() для получения зарезервированного времени по конкретной дате и выделения на временной шкале.">
-      <created>1385592817377</created>
-      <updated>1385592817377</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Добавил функционал для выделения тех дней в календаре, в которых есть забронирование время. Добавил таблицу-&quot;шахматку&quot; для создания правил  повторяющегося резервирования">
-      <created>1385679834605</created>
-      <updated>1385679834605</updated>
-    </task>
-    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1384" height="738" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6405694" sideWeight="0.4996535" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13396779" sideWeight="0.3594306" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13444214" sideWeight="0.20877817" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6405694" sideWeight="0.5003465" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.71293" sideWeight="0.4996535" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24963397" sideWeight="0.67005074" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3993232" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32994923" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32994923" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924694" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.08967851" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -399,129 +381,120 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Первый коммит" />
-    <MESSAGE value="Добавил навигацию по датам, временную шкалу, объект-хранилище для информации по резервированию, реализовал механизм записи в хранилище." />
-    <MESSAGE value="Создал стили для отображения главной страницы, реализовал функцию highlightHours() для получения зарезервированного времени по конкретной дате и выделения на временной шкале." />
-    <MESSAGE value="Добавил функционал для выделения тех дней в календаре, в которых есть забронирование время. Добавил таблицу-&quot;шахматку&quot; для создания правил  повторяющегося резервирования" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавил функционал для выделения тех дней в календаре, в которых есть забронирование время. Добавил таблицу-&quot;шахматку&quot; для создания правил  повторяющегося резервирования" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="156" column="99" selection-start="5941" selection-end="5941" vertical-scroll-proportion="0.0" vertical-offset="2312" max-vertical-offset="5117">
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/bootstrap.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="286" column="12" selection-start="8047" selection-end="8055" vertical-scroll-proportion="0.0" vertical-offset="5658" max-vertical-offset="36788">
+        <state line="14" column="23" selection-start="238" selection-end="238" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="374">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/carousel.html">
+    <entry file="file://$PROJECT_DIR$/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="352" column="29" selection-start="8709" selection-end="10650" vertical-scroll-proportion="0.0" vertical-offset="5984" max-vertical-offset="7786">
+        <state line="192" column="23" selection-start="7402" selection-end="7402" vertical-scroll-proportion="0.0" vertical-offset="1955" max-vertical-offset="5848">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/styles/main1.css">
+    <entry file="file://$PROJECT_DIR$/libs/mongoose.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="0" selection-start="715" selection-end="715" vertical-scroll-proportion="0.0" vertical-offset="576" max-vertical-offset="1717">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="816">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/weekHours.js">
+    <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="64" selection-start="266" selection-end="266" vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="680">
+        <state line="34" column="19" selection-start="1018" selection-end="1018" vertical-scroll-proportion="0.0" vertical-offset="578" max-vertical-offset="1700">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/styles/calendar1.css">
+    <entry file="file://$PROJECT_DIR$/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="13" selection-start="277" selection-end="277" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="1224">
+        <state line="181" column="37" selection-start="6888" selection-end="6888" vertical-scroll-proportion="0.0" vertical-offset="3077" max-vertical-offset="5848">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/bootstrap.css">
+    <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1849" column="39" selection-start="31748" selection-end="31866" vertical-scroll-proportion="0.0" vertical-offset="31311" max-vertical-offset="104941">
+        <state line="15" column="18" selection-start="347" selection-end="347" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/calendar.js">
+    <entry file="file://$PROJECT_DIR$/config.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="106" column="0" selection-start="3239" selection-end="3239" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="2227">
+        <state line="5" column="1" selection-start="86" selection-end="86" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="187">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/carousel.html">
+    <entry file="file://$PROJECT_DIR$/libs/mongoose.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="352" column="29" selection-start="8709" selection-end="10650" vertical-scroll-proportion="0.0" vertical-offset="5984" max-vertical-offset="7786">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="448" max-vertical-offset="816">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/styles/main1.css">
+    <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="0" selection-start="715" selection-end="715" vertical-scroll-proportion="0.0" vertical-offset="576" max-vertical-offset="1717">
+        <state line="2" column="47" selection-start="128" selection-end="128" vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="2482">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/styles/calendar1.css">
+    <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="13" selection-start="277" selection-end="277" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1224">
+        <state line="15" column="17" selection-start="338" selection-end="338" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="374">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/weekHours.js">
+    <entry file="file://$PROJECT_DIR$/libs/mongoose.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="64" selection-start="266" selection-end="266" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="680">
+        <state line="22" column="3" selection-start="458" selection-end="458" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="578">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/bootstrap.css">
+    <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1849" column="39" selection-start="31748" selection-end="31866" vertical-scroll-proportion="0.0" vertical-offset="31311" max-vertical-offset="104941">
+        <state line="17" column="37" selection-start="608" selection-end="608" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1581">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/bootstrap.js">
+    <entry file="file://$PROJECT_DIR$/libs/config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="286" column="12" selection-start="8047" selection-end="8055" vertical-scroll-proportion="0.0" vertical-offset="5658" max-vertical-offset="36788">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/calendar.js">
+    <entry file="file://$PROJECT_DIR$/public/scripts/calendar.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="0" selection-start="876" selection-end="876" vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="2227">
+        <state line="58" column="0" selection-start="1738" selection-end="1738" vertical-scroll-proportion="0.0" vertical-offset="686" max-vertical-offset="2227">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/config.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="133" column="26" selection-start="5106" selection-end="5106" vertical-scroll-proportion="0.19465649" vertical-offset="2159" max-vertical-offset="5355">
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state line="10" column="18" selection-start="240" selection-end="240" vertical-scroll-proportion="-6.5384617" vertical-offset="0" max-vertical-offset="306">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="174" column="52" selection-start="6551" selection-end="6551" vertical-scroll-proportion="0.7234042" vertical-offset="2720" max-vertical-offset="6698">
+          <folding />
         </state>
       </provider>
     </entry>
