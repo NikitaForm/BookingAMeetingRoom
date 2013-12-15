@@ -14,16 +14,12 @@ db.once('open', function callback () {
 
 var Schema = mongoose.Schema;
 
-// Schemas
-
-
-
-var Storage = new Schema({
-    storage: String
+var recordSchema = new Schema({
+    room: String,
+    date: String,
+    hours: Array
 });
 
+var RecordModel = mongoose.model('Record', recordSchema);
 
-
-var StorageModel = mongoose.model('Storage', Storage);
-
-module.exports.StorageModel = StorageModel;
+module.exports.RecordModel = RecordModel;
