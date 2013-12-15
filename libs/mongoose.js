@@ -1,8 +1,10 @@
 var mongoose    = require('mongoose');
 var log         = require('./log')(module);
 var config      = require('./config');
-
-mongoose.connect(config.get('mongoose:uri'));
+var uristring = process.env.MONGOLAB_URI ||
+                process.env.MONGOHQ_URL ||
+                config.get('mongoose:uri');
+mongoose.connect(uristring);
 var db = mongoose.connection;
 
 db.on('error', function (err) {

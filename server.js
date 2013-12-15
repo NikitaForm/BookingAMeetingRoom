@@ -156,7 +156,7 @@ app.get('/rooms', function(req, res) {
     return res.send(config.get('rooms'));
 
 });
-
-app.listen(config.get('port'), function(){
-    log.info('Express server listening on port ' + config.get('port'));
+var port = process.env.PORT || config.get('port');
+app.listen(port, function(){
+    log.info('Express server listening on port ' + port);
 });
