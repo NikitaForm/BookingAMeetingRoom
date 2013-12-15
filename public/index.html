@@ -194,6 +194,7 @@
                             highlightDays(calendar.getValue());
                             highlightHours(calendar.getValue());
                             showRecordInMonth(storage);
+                            highlightRule();
                         }
                     });
             }
@@ -241,8 +242,11 @@
                         alert(res);
 
                         var index = getArrIndexByPropName(storage, 'date', value);
-                        if (index == -1) {
-                            storage.push(record);
+                        alert(index +'  ' + times.join());
+                        if ( index == -1 ) {
+                            if (times.length != 0) {
+                                storage.push(record);
+                            }
                         } else {
                             if (times.length == 0) {
                                 storage.splice(index, 1);
@@ -279,18 +283,18 @@
                         break;
                     }
                 }
-
-              /*  if (rule) {
-                    hourValuesRule = storage.rule[currentDate.getDay()%7];
-                }*/
+                var index = getArrIndexByPropName(storage, 'date', 'rule');
+                if (index != -1) {
+                    hourValuesRule = storage[index].hours[currentDate.getDay()%7];
+                }
 
                 if (hourValuesStor) {
                     hourValues = hourValues.concat(hourValuesStor);
                 }
 
-              /*  if (hourValuesRule) {
+                if (hourValuesRule) {
                     hourValues = hourValues.concat(hourValuesRule);
-                }*/
+                }
 
                 var lis = $('li').toggleClass('reserved', false);
                 if (hourValues) {
@@ -298,7 +302,6 @@
                                 if (hourValues.indexOf($(elem).html()) != -1) {
                                     $(elem).addClass('reserved');
                                 }
-
                             });
                 }
             }
@@ -409,7 +412,7 @@
                     , success: function(res) {
                         alert(res);
 
-                        var index = getArrIndexByPropName(storage, 'rule', value);
+                        var index = getArrIndexByPropName(storage, 'date', 'rule');
                         if (index == -1) {
                             record.hours = rule;
                             storage.push(record);
@@ -425,7 +428,6 @@
                         alert('Here is some troubles with booking ' + res.error);
                     }
                 });
-                storage.rule = rule;
             }
 
             function displayFirstDate() {
@@ -443,8 +445,24 @@
                 return -1;
             }
 
-            function showRecordInMonth(arr) {
+            function showRecordInMonth(arr, currentDate) {
                 var ulForRec = $('<ul></ul>');
+                var dayValues = [];
+                var dateFromStorage;
+                var month = currentDate.getMonth();
+                var year = currentDate.getFullYear();
+                var index = getArrIndexByPropName(storage, 'date', 'rule');
+                if (index != -1) {
+                    currentDate.setDate(1);
+                    var numDay;
+                    while (currentDate.getMonth() == month) {
+                        numDay = currentDate.getDay()%7;
+                        if (storage[index].hours[numDay]) {
+                            dayValues.push(currentDate.getDate() + '');
+                        }
+                        currentDate.setDate(currentDate.getDate() + 1);
+                    }
+                }
                 arr.sort(compareRecordsInArray);
                 for (var i = 0; i < arr.length; i++) {
                     ulForRec.append($('<li>' + arr[i].date +'_______' + arr[i].hours.join(', ') + '</li>'));
@@ -461,35 +479,26 @@
                 if(a.date < b.date) return -1;
             }
             function highlightRule() {
-                var weekTable = $('#weekhours-holder');
-                weekTable.find('row')
-                        .each(function(index, elem) {
-                            var row = $(elem).parent();
-                            var dayName = row.find('.day-names').html();
-                            switch (dayName) {
-                                case 'Пн':
-                                    dayNum = 1;
-                                    break;
-                                case 'Вт':
-                                    dayNum = 2;
-                                    break;
-                                case 'Ср':
-                                    dayNum = 3;
-                                    break;
-                                case 'Чт':
-                                    dayNum = 4;
-                                    break;
-                                case 'Пт':
-                                    dayNum = 5;
-                                    break;
-                                case 'Сб':
-                                    dayNum = 6;
-                                    break;
-                                case 'Вс':
-                                    dayNum = 0;
-                                    break;
+                var weekTable = $('#weekhours-holder').find('tr');
+                var ths = weekTable.eq(0).find('th');
+                var index = getArrIndexByPropName(storage, 'date', 'rule');
+                if (index != -1) {
+                    var rule = storage[index].hours;
+                    for (var i = 0; i < rule.length; i++) {
+                        if(rule[i]) {
+                            if( i == 0 ) {
+                                var tds = weekTable.eq(7).find('td');
+                            } else {
+                                tds = weekTable.eq(i).find('td');
                             }
-                            var hour = weekTable.find('th').eq(row.find('td').index($(elem))).html();
+                            ths.each(function(index, elem) {
+                                if (rule[i].indexOf($(elem).html()) != -1) {
+                                    tds.eq(index).addClass('reserved');
+                                }
+                            });
+                        }
+                    }
+                }
             }
         </script>
     </div>

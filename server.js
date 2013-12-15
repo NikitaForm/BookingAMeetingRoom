@@ -63,8 +63,8 @@ app.post('/save', function(req, res) {
     if (storage.hours.length == 0) {
         RecordModel.findOneAndRemove(condition, function (err, record) {
             if (!err) {
-                log.info(record.date + ' was removed');
-                res.send(record.hours);
+                log.info('record was removed');
+                res.send('record was removed');
             } else {
                 console.log(err);
                 if(err.name == 'ValidationError') {
