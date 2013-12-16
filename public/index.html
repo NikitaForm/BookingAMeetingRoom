@@ -2,24 +2,22 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link type="text/css" rel="stylesheet" href="styles/calendar1.css">
-    <link type="text/css" rel="stylesheet" href="styles/main1.css">
-    <link href="css/bootstrap.css" rel="stylesheet" media="screen">
+    <link type="text/css" rel="stylesheet" href="css/calendar1.css">
+    <link type="text/css" rel="stylesheet" href="css/main1.css">
+    <link media="screen" rel="stylesheet" href="css/bootstrap.css" >
     <script src="http://code.jquery.com/jquery-latest.js"></script>
 
     <link rel="SHORTCUT ICON" href="images/i1.ico">
     <script src="js/bootstrap.js"></script>
-    <script src="scripts/weekHours.js"></script>
-    <script src="scripts/calendar.js"></script>
-    <title>Бронирование конференц зала</title>
+    <script src="js/weekHours.js"></script>
+    <script src="js/calendar.js"></script>
+    <title>Резервирование конференц зала</title>
 </head>
 <body>
-
 
     <div id="main" class="container">
         <div class="navbar">
             <div class="navbar-inner">
-
                 <ul class="nav">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -27,52 +25,31 @@
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" id="roomslist">
-
                         </ul>
                     </li>
                 </ul>
                 <span class="brand">Услуги резервирования</span>
             </div>
         </div>
+
         <div id="greeting">
             <h3>
                 Выберите конференцзал
             </h3>
         </div>
-        <div class="row" style="display: none">
-            <div class="span4 text-center">
-                <button id="left" onclick="calendar.previousMonth()">_</button>
-            </div>
-            <div class="span4 text-center">
-                <button onclick="calendar.setValue(new Date())" >Сегодня</button>
-            </div>
-            <div class="span4 text-center">
-                <button id="right" onclick="calendar.nextMonth()">_</button>
-            </div>
-        </div>
-
-        <div id="calendar-holder" style="display: none" >
-
-        </div>
-
 
         <div id="myCarousel" class="carousel slide">
             <div class="carousel-inner">
                 <div class="item active" >
                     <div id="carousel1"></div>
-
                 </div>
                 <div class="item">
                     <div id="carousel2" ></div>
-
                 </div>
-
             </div>
             <a class="left carousel-control" href="#myCarousel" data-slide="prev" id="left-control">&lsaquo;</a>
             <a class="right carousel-control" href="#myCarousel" data-slide="next" id="right-control">&rsaquo;</a>
         </div>
-
-
 
         <div class="tabbable">
             <ul class="nav nav-tabs">
@@ -82,7 +59,6 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active row" id="tab1">
-
                     <div class="span3 text-center">
                         <div id="value"></div>
                     </div>
@@ -114,18 +90,15 @@
                     </div>
                     <div class="row">
                         <div class="span2 offset10 text-center">
-                                <button class="btn btn-warning" onclick="createRule(); highlightDays(calendar.getValue());">Применить</button>
+                                <button class="btn btn-warning" onclick="createRule();">Применить</button>
                         </div>
                     </div>
-
                 </div>
                 <div class="tab-pane" id="tab3">
                     <div id="month-list">Тут будет список</div>
                 </div>
-
             </div>
         </div>
-
 
         <script>
             var storage = [];
@@ -135,32 +108,31 @@
             var calendar = new Calendar(d);
             var calendar2 = new Calendar(d);
             var weekHours = new WeekHours();
+
             $('#carousel1').append(calendar.getElement());
             $('#carousel2').append(calendar2.getElement());
+
             displayFirstDate();
             getRoomsList();
 
+            $('.carousel').carousel({
+                interval:false
+            });
+
             $(calendar).on("select", function(e) {
-                if(!currentRoom) {
-                    alert('Выберите, пожалуйста, конференцзал');
-                    return;
-                }
                 $('#value').html(e.value);
-
                 highlightDays(calendar.getValue());
                 highlightHours(calendar.getValue());
             });
+
             $(calendar2).on("select", function(e) {
-                if(!currentRoom) {
-                    alert('Выберите, пожалуйста, конференцзал');
-                    return;
-                }
                 $('#value').html(e.value);
-
                 highlightDays(calendar.getValue());
                 highlightHours(calendar.getValue());
             });
+
             $('#roomslist').on("click", 'li', onLiClick);
+
             $('#weekhours-holder').prepend(weekHours.getElement())
                     .on('click', 'td:not(.day-names)', onClick);
 
@@ -168,36 +140,6 @@
 
             $('#right-control').on('click', nextMonth);
             $('#left-control').on('click', prevMonth);
-
-            function onLiClick(e) {
-                currentRoom = $(e.target).html();
-                //alert(currentRoom);
-                $('#greeting').html('<h3>Добро пожаловать в ' + currentRoom + ' конференцзал</h3>');
-
-                initStorage();
-            }
-
-            function initStorage() {
-                    $.ajax({
-                        url:'/receive'
-                        , type:'GET'
-                        , data: {
-                            room: currentRoom,
-                            date: $('#value').html()
-                            }
-                        , success: function(res) {
-                            storage = JSON.parse(res);
-                            var index = getArrIndexByPropName(storage, 'date', 'rule');
-                            if (index != -1) {
-                                storage[index].hours = JSON.parse(storage[index].hours);
-                            }
-                            highlightDays(calendar.getValue());
-                            highlightHours(calendar.getValue());
-                            showRecordInMonth(storage);
-                            highlightRule();
-                        }
-                    });
-            }
 
             function nextMonth(e) {
                 setTimeout(function() {
@@ -216,11 +158,46 @@
                                         }, 400);
             }
 
+            function onLiClick(e) {
+                currentRoom = $(e.target).html();
+                $('#greeting').html('<h3>Добро пожаловать в ' + currentRoom + ' конференцзал</h3>');
+                initStorage();
+            }
+
+            function initStorage() {
+                $.ajax({
+                    url:'/receive'
+                    , type:'GET'
+                    , data: {
+                        room: currentRoom,
+                        date: $('#value').html()
+                    }
+                    , success: function(res) {
+                        storage = JSON.parse(res);
+                        var index = getArrIndexByPropName(storage, 'date', 'rule');
+                        if (index != -1) {
+                            storage[index].hours = JSON.parse(storage[index].hours);
+                        }
+                        highlightDays(calendar.getValue());
+                        highlightHours(calendar.getValue());
+                        showRecordInMonth(storage, calendar.getValue());
+                        highlightRule();
+                    }
+                    , error: function(res) {
+                        alert('Here is some troubles with booking ');
+                    }
+                });
+            }
+
             function onClick(e) {
                 $(e.target).toggleClass("reserved");
             }
 
             function bookMeetingRoom() {
+                if(!currentRoom) {
+                    alert('Выберите, пожалуйста, конференцзал');
+                    return false;
+                }
                 var value = $('#value').html();
                 var times = [];
                 var record = {};
@@ -239,10 +216,7 @@
                         'storage': JSON.stringify(record)
                     }
                     , success: function(res) {
-                        alert(res);
-
                         var index = getArrIndexByPropName(storage, 'date', value);
-                        alert(index +'  ' + times.join());
                         if ( index == -1 ) {
                             if (times.length != 0) {
                                 storage.push(record);
@@ -257,109 +231,19 @@
 
                         highlightDays(calendar.getValue());
                         highlightHours(calendar.getValue());
-                        showRecordInMonth(storage);
+                        showRecordInMonth(storage, calendar.getValue());
                     }
                     , error: function(res) {
-                        alert('Here is some troubles with booking ' + res.error);
-                    }
-                });
-
-            }
-
-            $('.carousel').carousel({
-                interval:false
-            });
-
-            function highlightHours(currentDate) {
-                var hourValuesStor;
-                var value = $('#value').html();
-                var rule = storage.rule;
-                var hourValuesRule;
-                var hourValues = [];
-
-                for (var i = 0; i < storage.length; i++){
-                    if(storage[i].date == value) {
-                        hourValuesStor = storage[i].hours;
-                        break;
-                    }
-                }
-                var index = getArrIndexByPropName(storage, 'date', 'rule');
-                if (index != -1) {
-                    hourValuesRule = storage[index].hours[currentDate.getDay()%7];
-                }
-
-                if (hourValuesStor) {
-                    hourValues = hourValues.concat(hourValuesStor);
-                }
-
-                if (hourValuesRule) {
-                    hourValues = hourValues.concat(hourValuesRule);
-                }
-
-                var lis = $('li').toggleClass('reserved', false);
-                if (hourValues) {
-                    lis.each(function(index, elem) {
-                                if (hourValues.indexOf($(elem).html()) != -1) {
-                                    $(elem).addClass('reserved');
-                                }
-                            });
-                }
-            }
-
-            function highlightDays(currentDate) {
-                var dayValues = [];
-                var dateFromStorage;
-                var month = currentDate.getMonth();
-                var year = currentDate.getFullYear();
-                for(var i = 0; i < storage.length; i++) {
-                    if(storage[i].date != 'rule') {
-                        //этот кусок можно удалить, т.к. в хранилище данные только по тек месяцу
-                        dateFromStorage = (storage[i].date).split('.');
-                        if (dateFromStorage[1] == month + 1 && dateFromStorage[2] == year) {
-                            dayValues.push(parseInt(dateFromStorage[0]).toString());
-                        }
-                    }
-                }
-                var index = getArrIndexByPropName(storage, 'date', 'rule');
-                if (index != -1) {
-                    currentDate.setDate(1);
-                    var numDay;
-                    while (currentDate.getMonth() == month) {
-                        numDay = currentDate.getDay()%7;
-                        if (storage[index].hours[numDay]) {
-                            dayValues.push(currentDate.getDate() + '');
-                        }
-                        currentDate.setDate(currentDate.getDate() + 1);
-                    }
-                }
-
-                var tds = $('.date-cell').toggleClass('reserved', false);
-                if (dayValues) {
-                    tds.each(function(index, elem) {
-                        if(dayValues.indexOf($(elem).html()) != -1) {
-                            $(elem).addClass('reserved');
-                        }
-                    });
-                }
-            }
-
-            function getRoomsList() {
-                $.ajax({
-                    url:'/rooms'
-                    , type:'GET'
-                    , data:'jsonData'
-                    , success: function(res) {
-                        roomsList = res;
-                        var divForRoom = $('<div></div>');
-                        for (var i = 0; i < res.length; i++) {
-                            divForRoom.append($('<li><a tabindex="-1">' + res[i] + '</a></li>'));
-                        }
-                        $('#roomslist').append(divForRoom.html());
+                        alert('Here is some troubles with booking ');
                     }
                 });
             }
 
             function createRule() {
+                if(!currentRoom) {
+                    alert('Выберите, пожалуйста, конференцзал');
+                    return false;
+                }
                 var dayNum;
                 var weekTable = $('#weekhours-holder');
                 var record = {};
@@ -410,8 +294,6 @@
                         'storage': JSON.stringify(record)
                     }
                     , success: function(res) {
-                        alert(res);
-
                         var index = getArrIndexByPropName(storage, 'date', 'rule');
                         if (index == -1) {
                             record.hours = rule;
@@ -419,38 +301,65 @@
                         } else {
                             storage[index].hours = rule;
                         }
-
                         highlightDays(calendar.getValue());
                         highlightHours(calendar.getValue());
-                        showRecordInMonth(storage);
+                        showRecordInMonth(storage, calendar.getValue());
                     }
                     , error: function(res) {
-                        alert('Here is some troubles with booking ' + res.error);
+                        alert('Here is some troubles with booking ');
                     }
                 });
             }
 
-            function displayFirstDate() {
-                var day = d.getDate();
-                var month = d.getMonth() + 1;
-                var year = d.getFullYear();
-                $('#value').html(((day < 10) ? '0' + day : day) + '.' + ((month < 10) ? '0' + month : month) + '.' + year);
-            }
-            function getArrIndexByPropName (arr, propName, value){
-                for(var i = 0; i < arr.length; i++) {
-                    if(arr[i][propName] == value) {
-                        return i;
+            function highlightHours(currentDate) {
+                var hourValuesStor;
+                var value = $('#value').html();
+                var rule = storage.rule;
+                var hourValuesRule;
+                var hourValues = [];
+                for (var i = 0; i < storage.length; i++){
+                    if(storage[i].date == value) {
+                        hourValuesStor = storage[i].hours;
+                        break;
                     }
                 }
-                return -1;
+                var index = getArrIndexByPropName(storage, 'date', 'rule');
+
+                if (index != -1) {
+                    hourValuesRule = storage[index].hours[currentDate.getDay()%7];
+                }
+
+                if (hourValuesStor) {
+                    hourValues = hourValues.concat(hourValuesStor);
+                }
+
+                if (hourValuesRule) {
+                    hourValues = hourValues.concat(hourValuesRule);
+                }
+
+                var lis = $('li').toggleClass('reserved', false);
+                if (hourValues) {
+                    lis.each(function(index, elem) {
+                                if (hourValues.indexOf($(elem).html()) != -1) {
+                                    $(elem).addClass('reserved');
+                                }
+                            });
+                }
             }
 
-            function showRecordInMonth(arr, currentDate) {
-                var ulForRec = $('<ul></ul>');
+            function highlightDays(currentDate) {
                 var dayValues = [];
                 var dateFromStorage;
                 var month = currentDate.getMonth();
                 var year = currentDate.getFullYear();
+                for(var i = 0; i < storage.length; i++) {
+                    if(storage[i].date != 'rule') {
+                        dateFromStorage = (storage[i].date).split('.');
+                        if (dateFromStorage[1] == month + 1 && dateFromStorage[2] == year) {
+                            dayValues.push(parseInt(dateFromStorage[0]).toString());
+                        }
+                    }
+                }
                 var index = getArrIndexByPropName(storage, 'date', 'rule');
                 if (index != -1) {
                     currentDate.setDate(1);
@@ -463,21 +372,16 @@
                         currentDate.setDate(currentDate.getDate() + 1);
                     }
                 }
-                arr.sort(compareRecordsInArray);
-                for (var i = 0; i < arr.length; i++) {
-                    ulForRec.append($('<li>' + arr[i].date +'_______' + arr[i].hours.join(', ') + '</li>'));
-                }
-                if (arr.length == 0) {
-                    $('#month-list').html('В этом месяце нет зарезервированного времени');
-                } else {
-                    $('#month-list').html('В этом месяце есть резервирования на следующие даты и часы').append(ulForRec);
+                var tds = $('.date-cell').toggleClass('reserved', false);
+                if (dayValues) {
+                    tds.each(function(index, elem) {
+                        if(dayValues.indexOf($(elem).html()) != -1) {
+                            $(elem).addClass('reserved');
+                        }
+                    });
                 }
             }
 
-            function compareRecordsInArray(a,b) {
-                if(a.date > b.date) return 1;
-                if(a.date < b.date) return -1;
-            }
             function highlightRule() {
                 var weekTable = $('#weekhours-holder').find('tr');
                 var ths = weekTable.eq(0).find('th');
@@ -500,6 +404,102 @@
                     }
                 }
             }
+
+            function getRoomsList() {
+                $.ajax({
+                    url:'/rooms'
+                    , type:'GET'
+                    , data:'jsonData'
+                    , success: function(res) {
+                        roomsList = res;
+                        var divForRoom = $('<div></div>');
+                        for (var i = 0; i < res.length; i++) {
+                            divForRoom.append($('<li><a tabindex="-1">' + res[i] + '</a></li>'));
+                        }
+                        $('#roomslist').append(divForRoom.html());
+                    }
+                    , error: function(res) {
+                        alert('Here is some troubles with booking ');
+                    }
+                });
+            }
+
+            function displayFirstDate() {
+                var day = d.getDate();
+                var month = d.getMonth() + 1;
+                var year = d.getFullYear();
+                $('#value').html(((day < 10) ? '0' + day : day) + '.' + ((month < 10) ? '0' + month : month) + '.' + year);
+            }
+
+            function getArrIndexByPropName (arr, propName, value){
+                for(var i = 0; i < arr.length; i++) {
+                    if(arr[i][propName] == value) {
+                        return i;
+                    }
+                }
+                return -1;
+            }
+
+            function showRecordInMonth(arr, currentDate) {
+                var ulForRec = $('<ul></ul>');
+                var dayValues = [];
+                var obj = {};
+                var dayResult = [];
+                var month = currentDate.getMonth();
+                var year = currentDate.getFullYear();
+                var index = getArrIndexByPropName(storage, 'date', 'rule');
+                if (index != -1) {
+                    currentDate.setDate(1);
+
+                    while (currentDate.getMonth() == month) {
+                        (function(d) {
+                            var numDay;
+                            var currentRec = {};
+                            numDay = d.getDay()%7;
+                            if (storage[index].hours[numDay]) {
+                                currentRec.date = (d.getDate() < 10 ? ('0' + d.getDate()) : d.getDate()) +
+                                        '.' + (month < 9 ? '0' + (month + 1) : (month + 1)) + '.' + year;
+                                currentRec.hours = storage[index].hours[numDay];
+                                dayValues.push(currentRec);
+                            }
+                        })(currentDate);
+                        currentDate.setDate(currentDate.getDate() + 1);
+                    }
+                }
+                outer:
+                for (var i = 0; i < arr.length; i++) {
+                    for (var j = 0; j < dayValues.length; j++) {
+
+                        if ( arr[i].date == dayValues[j].date ) {
+                            dayValues[j].hours = dayValues[j].hours.concat(arr[i].hours);
+
+                            for ( var k = 0; k < dayValues[j].hours.length; k++) {
+                                obj[dayValues[j].hours[k]] = 1;
+                            }
+                            dayValues[j].hours = Object.keys(obj).sort();
+                            continue outer;
+                        }
+                    }
+                    if(arr[i].date != 'rule') {
+                        dayValues.push(arr[i]);
+                    }
+                }
+                dayValues.sort(compareRecordsInArray);
+                for ( i = 0; i < dayValues.length; i++) {
+                    ulForRec.append($('<li>' + dayValues[i].date +'_______' + dayValues[i].hours.join(', ') + '</li>'));
+                }
+                if (dayValues.length == 0) {
+                    $('#month-list').html('В этом месяце нет зарезервированного времени');
+                } else {
+                    $('#month-list').html('В этом месяце есть резервирования на следующие даты и часы').append(ulForRec);
+                }
+            }
+
+            function compareRecordsInArray(a,b) {
+                if(a.date > b.date) return 1;
+                if(a.date < b.date) return -1;
+            }
+
         </script>
     </div>
 </body>
