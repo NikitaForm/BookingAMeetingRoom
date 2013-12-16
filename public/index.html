@@ -476,7 +476,7 @@
                             for ( var k = 0; k < dayValues[j].hours.length; k++) {
                                 obj[dayValues[j].hours[k]] = 1;
                             }
-                            dayValues[j].hours = Object.keys(obj).sort();
+                            dayValues[j].hours = Object.keys(obj).sort(compareHours);
                             continue outer;
                         }
                     }
@@ -493,6 +493,11 @@
                 } else {
                     $('#month-list').html('В этом месяце есть резервирования на следующие даты и часы').append(ulForRec);
                 }
+            }
+
+            function compareHours(a, b) {
+                if(parseInt(a) > parseInt(b)) return 1;
+                if(parseInt(a) < parseInt(b)) return -1;
             }
 
             function compareRecordsInArray(a,b) {
