@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9ef114e4-3c4b-4fe9-96ed-7545eefe16bb" name="Default" comment="">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Procfile" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ldapsrv.js" />
     </list>
     <ignored path="bmr_server.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,7 +29,7 @@
       <file leaf-file-name="package.json" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="6" selection-start="393" selection-end="393" vertical-scroll-proportion="-11.769231" vertical-offset="0" max-vertical-offset="442">
+            <state line="18" column="6" selection-start="393" selection-end="393" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="442">
               <folding />
             </state>
           </provider>
@@ -37,7 +38,7 @@
       <file leaf-file-name="mongoose.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/libs/mongoose.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="29" selection-start="311" selection-end="311" vertical-scroll-proportion="0.0" vertical-offset="194" max-vertical-offset="544">
+            <state line="11" column="3" selection-start="397" selection-end="397" vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="544">
               <folding />
             </state>
           </provider>
@@ -55,7 +56,25 @@
       <file leaf-file-name="server.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="82" column="50" selection-start="2672" selection-end="2672" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1547">
+            <state line="134" column="30" selection-start="4216" selection-end="4216" vertical-scroll-proportion="0.0" vertical-offset="2050" max-vertical-offset="3298">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ldapsrv.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ldapsrv.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="42" column="52" selection-start="1173" selection-end="1173" vertical-scroll-proportion="-5.682857" vertical-offset="2703" max-vertical-offset="3417">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.json" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="49" selection-start="416" selection-end="428" vertical-scroll-proportion="-5.269231" vertical-offset="152" max-vertical-offset="578">
               <folding />
             </state>
           </provider>
@@ -70,10 +89,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="7" selection-start="568" selection-end="568" vertical-scroll-proportion="0.7345679" vertical-offset="0" max-vertical-offset="8687">
+            <state line="46" column="31" selection-start="2183" selection-end="2183" vertical-scroll-proportion="-9.230769" vertical-offset="542" max-vertical-offset="9401">
               <folding />
             </state>
           </provider>
@@ -101,12 +120,13 @@
         <option value="$PROJECT_DIR$/server2.js" />
         <option value="$PROJECT_DIR$/test/test.html" />
         <option value="$PROJECT_DIR$/public/styles/main1.css" />
-        <option value="$PROJECT_DIR$/config.json" />
         <option value="$PROJECT_DIR$/Procfile" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/libs/mongoose.js" />
-        <option value="$PROJECT_DIR$/server.js" />
+        <option value="$PROJECT_DIR$/config.json" />
+        <option value="$PROJECT_DIR$/ldapsrv.js" />
         <option value="$PROJECT_DIR$/public/index.html" />
+        <option value="$PROJECT_DIR$/server.js" />
       </list>
     </option>
   </component>
@@ -197,20 +217,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bmr_server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bmr_server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="node_modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -247,6 +253,12 @@
       <ConfigurationWrapper RunnerId="NodeJS.run" />
       <method />
     </configuration>
+    <configuration default="false" name="ldapsrv.js" type="NodeJSConfigurationType" factoryName="Node.js" singleton="true" temporary="true" path-to-node="C:/Program Files/nodejs/node" path-to-js-file="ldapsrv.js" working-dir="$PROJECT_DIR$">
+      <browser start="false" url="" with-js-debugger="false" />
+      <RunnerSettings RunnerId="NodeJS.run" />
+      <ConfigurationWrapper RunnerId="NodeJS.run" />
+      <method />
+    </configuration>
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -276,15 +288,17 @@
       <browser start="false" url="" with-js-debugger="false" />
       <method />
     </configuration>
-    <list size="3">
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="Node.js.app.js" />
       <item index="1" class="java.lang.String" itemvalue="Node.js.server.js" />
       <item index="2" class="java.lang.String" itemvalue="Node.js.index.js" />
+      <item index="3" class="java.lang.String" itemvalue="Node.js.ldapsrv.js" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Node.js.server.js" />
-        <item index="1" class="java.lang.String" itemvalue="Node.js.index.js" />
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Node.js.ldapsrv.js" />
+        <item index="1" class="java.lang.String" itemvalue="Node.js.server.js" />
+        <item index="2" class="java.lang.String" itemvalue="Node.js.index.js" />
       </list>
     </recent_temporary>
   </component>
@@ -322,11 +336,11 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24963397" sideWeight="0.6395939" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2532943" sideWeight="0.6395939" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3993232" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32994923" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3604061" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3604061" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -365,9 +379,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="1" selection-start="86" selection-end="86" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="187">
-          <folding />
-        </state>
+        <state line="5" column="1" selection-start="86" selection-end="86" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="187" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/libs/mongoose.js">
@@ -386,21 +398,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Procfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="19" selection-start="19" selection-end="19" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="28" selection-start="220" selection-end="220" vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="306">
-          <folding />
-        </state>
+        <state line="0" column="19" selection-start="19" selection-end="19" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="6" selection-start="393" selection-end="393" vertical-scroll-proportion="-11.769231" vertical-offset="0" max-vertical-offset="442">
+        <state line="18" column="6" selection-start="393" selection-end="393" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="442">
           <folding />
         </state>
       </provider>
@@ -412,6 +415,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/.WebStorm7/system/extLibs/nodejs-v0.10.22-src/core-modules-sources/lib/events.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="71" column="0" selection-start="2741" selection-end="2741" vertical-scroll-proportion="0.33142856" vertical-offset="768" max-vertical-offset="4709" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libs/mongoose.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="3" selection-start="397" selection-end="397" vertical-scroll-proportion="0.0" vertical-offset="194" max-vertical-offset="544">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/ldapjs/lib/client/client.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="775" column="17" selection-start="22499" selection-end="22499" vertical-scroll-proportion="0.33142856" vertical-offset="13059" max-vertical-offset="15725" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/libs/config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
@@ -419,23 +439,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/libs/mongoose.js">
+    <entry file="file://$PROJECT_DIR$/config.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="29" selection-start="311" selection-end="311" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="50" selection-start="2672" selection-end="2672" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1547">
+        <state line="17" column="49" selection-start="416" selection-end="428" vertical-scroll-proportion="-5.269231" vertical-offset="152" max-vertical-offset="578">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="7" selection-start="568" selection-end="568" vertical-scroll-proportion="0.7345679" vertical-offset="0" max-vertical-offset="8687">
+        <state line="46" column="31" selection-start="2183" selection-end="2183" vertical-scroll-proportion="-9.230769" vertical-offset="542" max-vertical-offset="9401">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="134" column="30" selection-start="4216" selection-end="4216" vertical-scroll-proportion="0.0" vertical-offset="2050" max-vertical-offset="3298">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ldapsrv.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="52" selection-start="1173" selection-end="1173" vertical-scroll-proportion="-5.682857" vertical-offset="2703" max-vertical-offset="3417">
           <folding />
         </state>
       </provider>

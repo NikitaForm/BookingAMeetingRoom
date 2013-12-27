@@ -31,6 +31,24 @@
                 <span class="brand">Услуги резервирования</span>
             </div>
         </div>
+        <div class="modal hide fade" id="auth-modal" >
+            <div class="modal-body">
+                <div class="row">
+                    <div class="well span4 offset1">
+                        <legend>Авторизируйтесь</legend>
+                        <div class="alert alert-error">
+                            <a class="close" href="#" data-dismiss="alert">x</a>Ошибка!
+                        </div>
+                        <form method="post" accept-charset="utf-8" id="logform">
+                            <input type="text" class="span4" placeholder="Email address" name="username">
+                            <input type="password" class="span4" placeholder="Password" name="password">
+                            <button class="btn btn-block btn-success" type="submit" name="submit"
+                                    onclick="authorize22()" data-dismiss="modal">Авторизоваться</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div id="greeting">
             <h3>
@@ -111,7 +129,7 @@
 
             $('#carousel1').append(calendar.getElement());
             $('#carousel2').append(calendar2.getElement());
-
+            $('#auth-modal').modal('show');
             displayFirstDate();
             getRoomsList();
 
@@ -185,6 +203,25 @@
                     }
                     , error: function(res) {
                         alert('Here is some troubles with booking ');
+                    }
+                });
+            }
+
+            function authorize22() {
+                //alert($('#logform').username);
+                //alert($('#logform').password);
+                $.ajax({
+                    url:'/login'
+                    , type:'POST'
+                    , data: {
+                        'username': '11',
+                        'password': '222'
+                    }
+                    , success: function(res) {
+                       alert(res);
+                    }
+                    , error: function(res) {
+                        alert('Here is some troubles with booking 4444  ' + res.data);
                     }
                 });
             }

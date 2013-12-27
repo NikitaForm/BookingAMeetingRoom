@@ -3,11 +3,27 @@
     "mongoose": {
         "uri": "mongodb://localhost/testDB"
     },
+
     "rooms": [
                 "Рубиновый",
                 "Изумрудный",
                 "Лазурный",
                 "Золотистый"
 
-            ]
+            ],
+    "users": {
+        "username=admin, o=users":
+                                {
+                                    "username": "admin",
+                                    "userpassword": "admin",
+                                    "role": "admin"
+                                },
+        "username=vasya, o=users":
+                                {
+                                    "username": "vasya",
+                                    "userpassword": "12345",
+                                    "role": "user"
+                                }
+
+    }
 }
