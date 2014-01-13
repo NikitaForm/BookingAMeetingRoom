@@ -17,9 +17,11 @@ db.once('open', function callback () {
 var Schema = mongoose.Schema;
 
 var recordSchema = new Schema({
+    userName: String,
+    type: String,
     room: String,
     date: String,
-    hours: Array
+    hours: String
 });
 
 var RecordModel = mongoose.model('Record', recordSchema);

@@ -50,9 +50,9 @@ function Calendar(date) {
         }
 
         if (showYear != year || showMonth != month) {
-            elem.html(($('<div class="currentMonth span4"/>').html(renderCalendarTable(new Date(year, month)))));
-            elem.append($('<div class="nearbyMonth span3"/>').html(renderCalendarTable(new Date(year, month + 1), 1)));
-            elem.prepend($('<div class="nearbyMonth span3 offset1"/>').html(renderCalendarTable(new Date(year, month - 1), 1)));
+            elem.html(($('<div class="currentMonth span4 offset1"/>').html(renderCalendarTable(new Date(year, month)))));
+            //elem.append($('<div class="nearbyMonth span3"/>').html(renderCalendarTable(new Date(year, month + 1), 1)));
+            //elem.prepend($('<div class="nearbyMonth span3 offset1"/>').html(renderCalendarTable(new Date(year, month - 1), 1)));
             showYear = year;
             showMonth = month;
         }

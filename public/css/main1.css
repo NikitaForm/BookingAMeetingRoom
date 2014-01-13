@@ -27,9 +27,13 @@
 
 .reserved{
     text-decoration: underline;
+    color: #eef5f3;
+    background: #d5d6d7;
+}
+.user-reserved{
+    text-decoration: underline;
     background: #f98690;
 }
-
 #schedule li {
     list-style: none;
     float: left;

@@ -25,5 +25,14 @@
                                     "role": "user"
                                 }
 
+    },
+    "session": {
+        "secret": "MarsAttacks!",
+        "key": "sid",
+        "cookie": {
+            "path": "/",
+            "httpOnly": true,
+            "maxAge": null
+        }
     }
 }
