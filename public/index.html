@@ -1,728 +1,169 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <link type="text/css" rel="stylesheet" href="css/calendar1.css">
-    <link type="text/css" rel="stylesheet" href="css/main1.css">
-    <link media="screen" rel="stylesheet" href="css/bootstrap.css" >
-    <link type="text/css" rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/blitzer/jquery-ui.css">
-    <link rel="SHORTCUT ICON" href="images/i1.ico">
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/weekHours.js"></script>
-    <script src="js/calendar.js"></script>
-    <title>Резервирование конференц зала</title>
-</head>
-<body>
+    <head>
+        <meta charset="utf-8">
+        <link type="text/css" rel="stylesheet" href="css/calendar1.css">
+        <link type="text/css" rel="stylesheet" href="css/main1.css">
+        <link media="screen" rel="stylesheet" href="css/bootstrap.css" >
+        <link type="text/css" rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/blitzer/jquery-ui.css">
+        <link rel="SHORTCUT ICON" href="images/i1.ico">
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/weekHours.js"></script>
+        <script src="js/calendar.js"></script>
+        <script src="js/underscore.js"></script>
+        <script src="js/backbone.js"></script>
+        <script src="js/models/mainAppModel.js"></script>
+        <script src="js/views/mainAppView.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/models/stateModel.js"></script>
+        <script src="js/views/stateView.js"></script>
+        <script src="js/models/recordModel.js"></script>
+        <script src="js/views/recordsView.js"></script>
+        <script src="js/models/ruleModel.js"></script>
+        <script src="js/views/ruleView.js"></script>
 
+
+        <title>Резервирование конференц зала</title>
+
+    </head>
+    <body>
     <div id="main" class="container">
-        <div class="navbar">
-            <div class="navbar-inner">
-                <ul class="nav">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Выбор зала
-                            <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" id="roomslist">
-                        </ul>
-                    </li>
-                </ul>
-                <span class="brand">Услуги резервирования</span>
-                <span class="btn pull-right" onclick = "logout()">Выйти</span>
-            </div>
         </div>
-        <div class="modal hide fade" id="auth-modal" >
-            <div class="modal-body">
-                <div class="row">
-                    <div class="well span4 offset1">
-                        <legend>Авторизируйтесь</legend>
-                        <div class="alert alert-error">
-                            <a class="close" href="#" data-dismiss="alert">x</a>Ошибка!
-                        </div>
-                        <form method="post" accept-charset="utf-8" id="logform">
-                            <input type="text" class="span4" placeholder="Email address" id="username" name="username">
-                            <input type="password" class="span4" placeholder="Password" id="password" name="password">
-                            <button class="btn btn-block btn-success" data-dismiss="modal"
-                                    onclick="authorize()">Авторизоваться</button>
-                        </form>
-                    </div>
+
+        <script type="text/template" id="start">
+            <div class="row">
+                <div class="well span4 offset4">
+                    <legend>Авторизируйтесь</legend>
+                   <!-- <div class="alert alert-error">
+                        <a class="close" href="#" data-dismiss="alert">x</a>Ошибка!
+                    </div> -->
+                    <form method="post" accept-charset="utf-8" id="logform">
+                        <input type="text" class="span4" placeholder="Login" id="username" name="username">
+                        <input type="password" class="span4" placeholder="Password" id="password" name="password">
+                        <button class="btn btn-block btn-success" onclick="return false;">Авторизоваться</button>
+                    </form>
                 </div>
             </div>
-        </div>
-
-        <div id="greeting">
-            <h3>
-                Выберите конференцзал
-            </h3>
-        </div>
-
-        <div class="row">
-            <div id="myCarousel" class="carousel slide span6 offset3">
-                <div class="carousel-inner">
-                    <div class="item active" >
-                        <div id="carousel1"></div>
-                    </div>
-                    <div class="item">
-                        <div id="carousel2" ></div>
-                    </div>
-                </div>
-                <a class="left carousel-control" href="#myCarousel" data-slide="prev" id="left-control">&lsaquo;</a>
-                <a class="right carousel-control" href="#myCarousel" data-slide="next" id="right-control">&rsaquo;</a>
-            </div>
-        </div>
-
-        <div class="tabbable">
-            <ul class="nav nav-tabs">
-                <li class="active"><a href="#tab1" data-toggle="tab">Посмотреть на выбранную дату</a></li>
-                <li><a href="#tab2" data-toggle="tab">Редактор правил</a></li>
-                <li><a href="#tab3" data-toggle="tab">Посмотреть в этом месяце</a></li>
-            </ul>
-            <div class="tab-content">
-                <div class="tab-pane active row" id="tab1">
-                    <div class="span3 text-center">
-                        <div id="value"></div>
-                    </div>
-                    <div class="span7 text-center">
-                        <ul id="schedule">
-                            <li>8:00</li>
-                            <li>9:00</li>
-                            <li>10:00</li>
-                            <li>11:00</li>
-                            <li>12:00</li>
-                            <li>13:00</li>
-                            <li>14:00</li>
-                            <li>15:00</li>
-                            <li>16:00</li>
-                            <li>17:00</li>
-                            <li>18:00</li>
-                            <li>19:00</li>
-                        </ul>
-                    </div>
-                    <div class="span2 text-center">
-                            <button class="btn btn-warning" onclick="bookMeetingRoom();">Подтвердить</button>
-                    </div>
-
-                </div>
-                <div class="tab-pane" id="tab2">
-
-                    <div>
-                         <h5>Выберите период действия правила</h5>
-                    </div>
-
-                    <div class="row" style="padding-bottom: 15px">
-                        <div class="span4">
-                            <span>Начало  </span><input id="dateBegin" class="input-small text-center"/>
-                        </div>
-                        <div class="span4">
-                            <span>Конец  </span><input id="dateEnd" class="input-small text-center"/>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="span10 offset1 text-center" id="weekhours-holder">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="span2 offset10 text-center">
-                                <button class="btn btn-warning" onclick="createRule();">Применить</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane" id="tab3">
-                    <div id="month-list">Тут будет список</div>
-                </div>
-            </div>
-        </div>
-
-        <script>
-            var storage = [];
-            var roomsList;
-            var currentUser;
-            var currentRoom;
-            var currentRole;
-            var d = new Date();
-            var calendar = new Calendar(d);
-            var calendar2 = new Calendar(d);
-            var weekHours = new WeekHours();
-
-            $('#carousel1').append(calendar.getElement());
-            $('#carousel2').append(calendar2.getElement());
-
-            displayFirstDate();
-            firstInitialize();
-
-
-
-
-            $('.carousel').carousel({
-                interval:false
-            });
-
-            $(calendar).on("select", function(e) {
-                $('#value').html(e.value);
-                highlightDays(calendar.getValue());
-                highlightHours(calendar.getValue());
-            });
-
-            $(calendar2).on("select", function(e) {
-                $('#value').html(e.value);
-                highlightDays(calendar.getValue());
-                highlightHours(calendar.getValue());
-            });
-
-            $('#roomslist').on("click", 'li', onLiClick);
-
-            $('#weekhours-holder').prepend(weekHours.getElement())
-                    .on('click', 'td:not(.day-names)', onClick);
-
-            $('#schedule').on('click', 'li', onClick);
-
-            $('#right-control').on('click', nextMonth);
-            $('#left-control').on('click', prevMonth);
-
-            $('#dateBegin , #dateEnd').attr("placeholder", "дд.мм.гггг").datepicker({
-                minDate: new Date,
-                maxDate: '+1y',
-                dateFormat: 'dd.mm.yy',
-                autoSize: true,
-                firstDay: 1,
-                onSelect: function(date, datepicker) {
-                            if (datepicker.id == 'dateBegin') {
-                                $('#dateEnd').datepicker("setDate", date).datepicker("enable")
-                                        .datepicker("option", "minDate", date);
-                            }
-
-            }
-            }).filter("#dateEnd").datepicker("disable");
-
-            function nextMonth(e) {
-                setTimeout(function() {
-                                        calendar.nextMonth();
-                                        calendar2.nextMonth();
-                                        initStorage();
-                                        }, 400);
-
-            }
-
-            function prevMonth(e) {
-                setTimeout(function() {
-                                        calendar.previousMonth();
-                                        calendar2.previousMonth();
-                                        initStorage();
-                                        }, 400);
-            }
-
-            function onLiClick(e) {
-                currentRoom = $(e.target).html();
-                changeGreeting(currentUser, currentRoom);
-                initStorage();
-            }
-
-            function initStorage() {
-                $.ajax({
-                    url:'/receive'
-                    , type:'GET'
-                    , data: {
-                        room: currentRoom,
-                        userName: currentUser,
-                        date: $('#value').html()
-                    }
-                    , success: function(res) {
-                        storage = JSON.parse(res);
-                        var index = getArrIndexByPropName(storage, 'date', 'rule');
-                        if (index != -1) {
-                            storage[index].hours = JSON.parse(storage[index].hours);
-                        }
-
-                        highlightDays(calendar.getValue());
-                        highlightHours(calendar.getValue());
-                        showRecordInMonth(storage);
-                        highlightRule();
-                    }
-                    , error: function(res) {
-                        alert('Here is some troubles with booking ');
-                    }
-                });
-            }
-
-            function authorize() {
-                //alert($('#username').val());
-                //alert(!(($('#username').val()) && ($('#password').val())));
-                if ( !(($('#username').val()) && ($('#password').val())) ) {
-                    $('#auth-modal').modal('show');
-                    $('.alert').alert();
-                    return false;
-                } else {
-                    $.ajax({
-                        url:'/login'
-                        , type:'POST'
-                        , data: {
-                            'username': $('#username').val(),
-                            'password': $('#password').val()
-                        }
-                        , success: function(res) {
-
-                            alert(res);
-                            currentRole = res.userRole;
-                            currentUser = res.userName;
-                            displayFirstDate();
-                            initStorage();
-                        }
-                        , error: function(res) {
-                            alert('Here is some troubles with booking ');
-                        }
-                    });
-                }
-            }
-
-            function logout() {
-
-                $.ajax({
-                    url:'/logout'
-                    , type:'POST'
-
-                    , success: function(res) {
-                        alert(res + 'logout');
-                        currentRole = currentRoom = currentUser = null;
-                        changeGreeting();
-                        firstInitialize();
-                    }
-                    , error: function(res) {
-                        alert('Here is some troubles with booking ');
-                    }
-                });
-
-            }
-
-            function onClick(e) {
-                var tar = $(e.target);
-                if (!tar.hasClass('reserved')) {
-                    tar.toggleClass("user-reserved");
-                } else {
-                    if(currentRole == 'admin') {
-                        tar.toggleClass('reserved', false);
-                        tar.attr('delete', 'true')
-                    }
-                }
-            }
-
-            function bookMeetingRoom() {
-                if(!currentRoom) {
-                    alert('Выберите, пожалуйста, конференцзал');
-                    return false;
-                }
-                var value = $('#value').html();
-                var times = [];
-                var isAffective;
-                var recordList = [];
-
-                $('#schedule li').each(function(index, elem) {
-                            if($(elem).hasClass('user-reserved')) {
-                                (function(el) {
-                                    var record = {};
-                                    record.userName = currentUser;
-                                    record.type = 'manual';
-                                    record.room = currentRoom;
-                                    record.date = value;
-                                    record.hours = $(el).html();
-                                    recordList.push(record);
-                                })(elem);
-                            }
-
-                            if($(elem).attr('delete')) {
-                                (function(el) {
-                                    var record = {};
-                                    record.userName = 'delete';
-                                    record.type = 'manual';
-                                    record.room = currentRoom;
-                                    record.date = value;
-                                    record.hours = $(el).html();
-                                    recordList.push(record);
-                                    isAffective = true;
-                                })(elem);
-                            }
-                        });
-
-                if (recordList.length == 0) {
-                    alert(!recordList);
-                    recordList.push({
-                    userName: currentUser,
-                    type: 'manual',
-                    room: currentRoom,
-                    date: value,
-                    hours: ''
-                    });
-                }
-
-                if(isAffective && !confirm('Данное действие приведет к удалению резервирования другого пользователя. Продолжить?')) {
-                    highlightHours();
-                    return false;
-                }
-                $.ajax({
-                    url:'/save'
-                    , type:'POST'
-                    , data: {
-                        'storage': JSON.stringify(recordList),
-                        'type': 'manual',
-                        'role': currentRole,
-                        'userName': currentUser
-                    }
-                    , success: function(res) {
-                        /*var index = getArrIndexByPropName(storage, 'date', value);
-                        if ( index == -1 ) {
-                            if (times.length != 0) {
-                                storage.push(record);
-                            }
-                        } else {
-                            if (times.length == 0) {
-                                storage.splice(index, 1);
-                            } else {
-                                storage[index].hours = times;
-                            }
-                        }
-
-                        highlightDays(calendar.getValue());
-                        highlightHours(calendar.getValue());
-                        showRecordInMonth(storage, calendar.getValue());*/
-                        initStorage();
-                    }
-                    , error: function(res) {
-                        alert('Here is some troubles with booking ');
-                    }
-                });
-            }
-
-            function createRule() {
-                if(!currentRoom) {
-                    alert('Выберите, пожалуйста, конференцзал');
-                    return false;
-                }
-                var dayNum;
-                var weekTable = $('#weekhours-holder');
-                var recordList = [];
-                var record = {};
-                var rule = [[],[],[],[],[],[],[]];
-                weekTable.find('.user-reserved')
-                        .each(function(index, elem) {
-                            var row = $(elem).parent();
-                            var dayName = row.find('.day-names').html();
-                            switch (dayName) {
-                                case 'Пн':
-                                    dayNum = 1;
-                                    break;
-                                case 'Вт':
-                                    dayNum = 2;
-                                    break;
-                                case 'Ср':
-                                    dayNum = 3;
-                                    break;
-                                case 'Чт':
-                                    dayNum = 4;
-                                    break;
-                                case 'Пт':
-                                    dayNum = 5;
-                                    break;
-                                case 'Сб':
-                                    dayNum = 6;
-                                    break;
-                                case 'Вс':
-                                    dayNum = 0;
-                                    break;
-                            }
-                            var hour = weekTable.find('th').eq(row.find('td').index($(elem))).html();
-
-                           /* if ( dayNum in rule ) {
-                                rule[dayNum].push(hour);
-                            } else {
-                                rule[dayNum] = [];
-                                rule[dayNum].push(hour);
-                            }*/
-                            rule[dayNum].push(hour);
-                        });
-                rule.push($('#dateBegin').val());
-                rule.push($('#dateEnd').val());
-                record.date = 'rule';
-                record.userName = currentUser;
-                record.hours = JSON.stringify(rule);
-                record.room = currentRoom;
-                record.type = 'rule';
-                recordList.push(record);
-                recordList = recordList.concat(getDaysByRule(rule));
-                $.ajax({
-                    url:'/save'
-                    , type:'POST'
-                    , data: {
-                        'storage': JSON.stringify(recordList),
-                        'type': 'rule'
-                    }
-                    , success: function(res) {
-                       /* var index = getArrIndexByPropName(storage, 'date', 'rule');
-                        if (index == -1) {
-                            record.hours = rule;
-                            storage.push(record);
-                        } else {
-                            storage[index].hours = rule;
-                        }
-                        highlightDays(calendar.getValue());
-                        highlightHours(calendar.getValue());
-                        showRecordInMonth(storage, calendar.getValue());*/
-                        initStorage();
-                    }
-                    , error: function(res) {
-                        alert('Here is some troubles with booking ');
-                    }
-                });
-            }
-
-            function highlightHours(currentDate) {
-                var hourValuesStor = [];
-                var value = $('#value').html();
-                var rule = storage.rule;
-                var hourValuesRule;
-                var hourValues = [];
-                for (var i = 0; i < storage.length; i++){
-                    if(storage[i].date == value) {
-                        hourValuesStor.push(storage[i]);
-
-                    }
-                }
-                /*var index = getArrIndexByPropName(storage, 'date', 'rule');
-
-                if (index != -1) {
-                    hourValuesRule = storage[index].hours[currentDate.getDay()%7];
-                }
-
-                if (hourValuesStor) {
-                    hourValues = hourValues.concat(hourValuesStor);
-                }
-
-                if (hourValuesRule) {
-                    hourValues = hourValues.concat(hourValuesRule);
-                }
-                */
-                var lis = $('#schedule li').toggleClass('reserved', false).removeAttr('delete');
-                lis.toggleClass('user-reserved', false);
-                if (hourValuesStor) {
-                    lis.each(function(index, elem) {
-                                var pos = getArrIndexByPropName(hourValuesStor, 'hours', $(elem).html());
-                                if (pos != -1) {
-                                    if ( hourValuesStor[pos].userName != currentUser ) {
-                                        $(elem).addClass('reserved');
-                                    } else {
-                                        $(elem).addClass('user-reserved');
-                                    }
-
-                                }
-                            });
-                }
-            }
-
-            function highlightDays(currentDate) {
-                var dayValues = [];
-                var dateFromStorage;
-                var month = currentDate.getMonth();
-                var year = currentDate.getFullYear();
-                for(var i = 0; i < storage.length; i++) {
-                    if(storage[i].date != 'rule') {
-                        dateFromStorage = (storage[i].date).split('.');
-                        if (dateFromStorage[1] == month + 1 && dateFromStorage[2] == year) {
-                            dayValues.push(parseInt(dateFromStorage[0]).toString());
-                        }
-                    }
-                }
-                /*var index = getArrIndexByPropName(storage, 'date', 'rule');
-                if (index != -1) {
-                    currentDate.setDate(1);
-                    var numDay;
-                    while (currentDate.getMonth() == month) {
-                        numDay = currentDate.getDay()%7;
-                        if (storage[index].hours[numDay]) {
-                            dayValues.push(currentDate.getDate() + '');
-                        }
-                        currentDate.setDate(currentDate.getDate() + 1);
-                    }
-                }*/
-                var tds = $('.date-cell').toggleClass('reserved', false);
-                if (dayValues) {
-                    tds.each(function(index, elem) {
-                        if(dayValues.indexOf($(elem).html()) != -1) {
-                            $(elem).addClass('reserved');
-                        }
-                    });
-                }
-            }
-
-            function highlightRule() {
-                var weekTable = $('#weekhours-holder').find('tr');
-                $('#weekhours-holder').find('td').toggleClass('user-reserved', false);
-                $('#dateBegin').val('');
-                $('#dateEnd').val('');
-                var ths = weekTable.eq(0).find('th');
-                var index = getArrIndexByPropName(storage, 'date', 'rule');
-                if (index != -1) {
-                    var rule = storage[index].hours;
-                    for (var i = 0; i < 7; i++) {
-                        if(rule[i]) {
-                            if( i == 0 ) {
-                                var tds = weekTable.eq(7).find('td');
-                            } else {
-                                tds = weekTable.eq(i).find('td');
-                            }
-                            ths.each(function(index, elem) {
-                                if (rule[i].indexOf($(elem).html()) != -1) {
-                                    tds.eq(index).addClass('user-reserved');
-                                }
-                            });
-                        }
-                    }
-                    if (rule[7]) {
-                        alert('rule begin' + rule[7]);
-                        $('#dateBegin').val(rule[7]);
-                    }
-                    if (rule[8]) {
-                        $('#dateEnd').val(rule[8]);
-                    }
-                }
-            }
-
-            function firstInitialize() {
-                $.ajax({
-                    url:'/rooms'
-                    , type:'GET'
-                    , data:'jsonData'
-                    , success: function(res) {
-                        roomsList = res.rooms;
-                        currentUser = res.userName;
-                        alert(currentUser);
-                        currentRole = res.userRole;
-                        currentRoom = (res.room == 'undefined')?null:res.room;
-                        var divForRoom = $('<div></div>');
-                        for (var i = 0; i < roomsList.length; i++) {
-                            divForRoom.append($('<li><a tabindex="-1">' + roomsList[i] + '</a></li>'));
-                        }
-                        $('#roomslist').html(divForRoom.html());
-                        if(currentUser && currentRole) {
-                            changeGreeting(currentUser, currentRoom);
-                            initStorage();
-                        } else {
-                            $('#auth-modal').modal('show');
-                            $('.alert').alert('close');
-                        }
-                    }
-                    , error: function(res) {
-                        alert('Here is some troubles with booking ');
-                    }
-                });
-            }
-
-            function displayFirstDate() {
-                var day = d.getDate();
-                var month = d.getMonth() + 1;
-                var year = d.getFullYear();
-                $('#value').html(((day < 10) ? '0' + day : day) + '.' + ((month < 10) ? '0' + month : month) + '.' + year);
-            }
-
-            function getArrIndexByPropName (arr, propName, value){
-                for(var i = 0; i < arr.length; i++) {
-                    if(arr[i][propName] == value) {
-                        return i;
-                    }
-                }
-                return -1;
-            }
-
-            function showRecordInMonth(arr) {
-                var ulForRec = $('<ul></ul>');
-
-                var recordsList = {};
-                arr.sort(compareRecordsInArray);
-
-
-                for (var i = 0; i < arr.length; i++) {
-                    if((arr[i].userName == currentUser) && (arr[i].date != 'rule')) {
-                        //userRecords.push(arr[i]);
-                        if (arr[i].date in recordsList) {
-                            recordsList[arr[i].date].push(arr[i].hours);
-                        } else {
-                            recordsList[arr[i].date] = [];
-                            recordsList[arr[i].date].push(arr[i].hours);
-                        }
-                    }
-                }
-
-                //dayValues.sort(compareRecordsInArray);
-                for ( var key in recordsList ) {
-                    ulForRec.append($('<li>' + key +'_______' + recordsList[key].sort(compareHours).join(', ') + '</li>'));
-                }
-                if (isEmpty(recordsList)) {
-                    $('#month-list').html('В этом месяце нет зарезервированного времени');
-                } else {
-                    $('#month-list').html('В этом месяце есть резервирования на следующие даты и часы').append(ulForRec);
-                }
-            }
-
-            function getDaysByRule(rule) {
-                var begin = rule[7].split('.');
-                var end = rule[8].split('.');
-                var dateBegin = new Date(begin[2], +begin[1] - 1, begin[0]);
-                var dateEnd = new Date(end[2], +end[1] - 1, end[0]);
-                var recordList = [];
-                //alert(dateBegin);
-                //alert(dateEnd);
-                //alert('date rule' + (dateBegin <= dateEnd));
-                while (+dateBegin <= +dateEnd) {
-                    var arr = rule[dateBegin.getDay()%7];
-                    //alert(dateBegin.getDay()%7);
-                    if(arr.length != 0) {
-                        for(var i = 0; i < arr.length; i++) {
-                            (function(hour) {
-                                var record = {};
-                                var day = dateBegin.getDate();
-                                var month = dateBegin.getMonth();
-                                var year = dateBegin.getFullYear();
-                                record.date = ((day < 10) ? '0' + day : day) + '.' + ((month < 9) ? '0' + (month + 1) : (month + 1)) + '.' + year;
-                                record.userName = currentUser;
-                                record.room = currentRoom;
-                                record.type = 'rule';
-                                record.hours = hour;
-                                recordList.push(record);
-                            })(arr[i]);
-                        }
-                    }
-                    dateBegin.setDate(dateBegin.getDate() + 1);
-                }
-                alert(recordList.join(' '));
-                return recordList;
-            }
-
-            function changeGreeting(user, room){
-                if(user && room) {
-                    $('#greeting').html('<h3>Добро пожаловать в ' + room + ' конференцзал, ' + user +'</h3>');
-                } else {
-                    $('#greeting').html('<h3>Выберите конференцзал ' +'</h3>');
-                }
-            }
-
-            function compareHours(a, b) {
-                if(parseInt(a) > parseInt(b)) return 1;
-                if(parseInt(a) < parseInt(b)) return -1;
-            }
-
-            function compareRecordsInArray(a, b) {
-                if(a.date > b.date) return 1;
-                if(a.date < b.date) return -1;
-            }
-
-            function isEmpty(obj) {
-                for (var key in obj) {
-                    return false;
-                }
-                return true;
-            }
-
         </script>
-    </div>
-</body>
+
+        <script type="text/template" id="forDate">
+            <div class="span3 text-center">
+                <div id="value"><%= date %></div>
+            </div>
+        </script>
+
+        <script type="text/template" id="forGreeting">
+            <h3>
+                Добро пожаловать в <%= currentRoom %> конференцзал, <%= currentUser %>
+            </h3>
+        </script>
+
+        <script type="text/template" id="first">
+
+            <div class="span7 text-center">
+                <ul id="schedule">
+                    <li>8:00</li>
+                    <li>9:00</li>
+                    <li>10:00</li>
+                    <li>11:00</li>
+                    <li>12:00</li>
+                    <li>13:00</li>
+                    <li>14:00</li>
+                    <li>15:00</li>
+                    <li>16:00</li>
+                    <li>17:00</li>
+                    <li>18:00</li>
+                    <li>19:00</li>
+                </ul>
+            </div>
+        </script>
+
+        <script type="text/template" id="success">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <ul class="nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Выбор зала
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" id="roomslist">
+                            </ul>
+                        </li>
+                    </ul>
+                    <span class="brand">Услуги резервирования</span>
+                    <span class="btn pull-right" id="logout"  > Выйти</span>
+                </div>
+            </div>
+
+            <div id="greeting">
+                <h3>
+                    Выберите конференцзал
+                </h3>
+            </div>
+
+            <div class="row">
+                <div id="myCarousel" class="carousel slide span6 offset3">
+                    <div class="carousel-inner">
+                        <div class="item active" >
+                            <div id="carousel1"></div>
+                        </div>
+                        <div class="item">
+                            <div id="carousel2" ></div>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#myCarousel" data-slide="prev" id="left-control">&lsaquo;</a>
+                    <a class="right carousel-control" href="#myCarousel" data-slide="next" id="right-control">&rsaquo;</a>
+                </div>
+            </div>
+
+            <div class="tabbable">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab1" data-toggle="tab">Посмотреть на выбранную дату</a></li>
+                    <li><a href="#tab2" data-toggle="tab">Редактор правил</a></li>
+                    <li><a href="#tab3" data-toggle="tab">Посмотреть в этом месяце</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="tab1" class="tab-pane active row" >
+                        <div id="date"></div>
+                        <div class="span2 text-center">
+                            <button class="btn btn-warning" id="up">Обновить</button>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane" id="tab2">
+
+                        <div>
+                            <h5>Выберите период действия правила</h5>
+                        </div>
+
+                        <div class="row" style="padding-bottom: 15px">
+                            <div class="span4">
+                                <span>Начало  </span><input id="dateBegin" class="input-small text-center"/>
+                            </div>
+                            <div class="span4">
+                                <span>Конец  </span><input id="dateEnd" class="input-small text-center"/>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="span10 offset1 text-center" id="weekhours-holder">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="span2 offset10 text-center">
+                                <button class="btn btn-warning" id="createRule";">Применить</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab3">
+                        <div id="month-list">Тут будет список</div>
+                    </div>
+                </div>
+            </div>
+        </script>
+
+    </body>
 </html>

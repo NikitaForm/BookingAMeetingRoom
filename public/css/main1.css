@@ -60,6 +60,11 @@
 .weekhours .day-names {
     width: 25px;
 }
+.weekhours .simple  {
+    color: transparent;
+    font-size: 0;
+    user-select: none;
+}
 
 th.day-names  {
     background: none;

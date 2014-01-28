@@ -23,7 +23,17 @@ var recordSchema = new Schema({
     date: String,
     hours: String
 });
+var ruleSchema = new Schema({
+    userName: String,
+    type: String,
+    room: String,
+    hours: Array,
+    dateBegin: String,
+    dateEnd: String
+});
 
 var RecordModel = mongoose.model('Record', recordSchema);
+var RuleModel = mongoose.model('Rule', ruleSchema);
 
 module.exports.RecordModel = RecordModel;
+module.exports.RuleModel = RuleModel;
