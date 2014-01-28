@@ -176,7 +176,7 @@ app.get('/rule', function(req, res) {
 app.post('/login', function (mainReq, mainRes) {
     var userName = mainReq.body.username;
     var password = mainReq.body.password;
-    var URL = 'ldap://25640:389';
+    var URL = 'ldap://leepy-caverns-7803.herokuapp.com';
 
     function myLDAPBind(user, pass, callback) {
         var client = ldap.createClient({
