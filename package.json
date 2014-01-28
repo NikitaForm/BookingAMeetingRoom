@@ -11,7 +11,10 @@
         "express"  : "3.3.x",
         "mongoose" : "3.6.x",
         "nconf"    : "0.6.x",
-        "winston"  : "0.7.x"
+        "winston"  : "0.7.x",
+        "ldapjs"   : "0.7.0",
+        "connect-mongo" : "0.4.0",
+        "node-gyp" : "0.12.2"
     },
     "engines": {
         "node": "0.10.x",
