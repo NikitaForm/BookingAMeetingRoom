@@ -163,7 +163,14 @@ app.get('/rule', function(req, res) {
         'userName': userName}, 'room type userName hours dateBegin dateEnd -_id', function (err, rule) {
         if (!err) {
             log.info(JSON.stringify(rule) + 'rule found');
-            rule = rule || {};
+            rule = rule || {
+                             "dateBegin": "",
+                             "dateEnd": "",
+                             "room": room,
+                             "type": "rule",
+                             "userName": userName,
+                             "hours":[]
+                            };
             return res.send(rule);
         } else {
             res.statusCode = 500;
@@ -176,7 +183,7 @@ app.get('/rule', function(req, res) {
 app.post('/login', function (mainReq, mainRes) {
     var userName = mainReq.body.username;
     var password = mainReq.body.password;
-    var URL = 'ldap://sleepy-caverns-7803.herokuapp.com';
+    var URL = 'ldap://127.0.0.1:389';
 
     function myLDAPBind(user, pass, callback) {
         var client = ldap.createClient({
