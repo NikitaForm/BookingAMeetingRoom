@@ -183,7 +183,7 @@ app.get('/rule', function(req, res) {
 app.post('/login', function (mainReq, mainRes) {
     var userName = mainReq.body.username;
     var password = mainReq.body.password;
-    var URL = 'ldap://127.0.0.1:389';
+    var URL = 'ldap://193.201.207.68:389';
 
     function myLDAPBind(user, pass, callback) {
         var client = ldap.createClient({
